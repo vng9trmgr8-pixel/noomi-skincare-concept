@@ -18,7 +18,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Sofia+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -81,15 +81,53 @@
     font-weight: 300;
   }
 
-  /* Mega-type hero */
+  /* Mega-type hero — kept on Geist Black for the heavy editorial display feel */
   .mega-type {
-    font-family: "Sofia Pro", "Sofia Sans", system-ui, sans-serif;
+    font-family: "Geist", system-ui, sans-serif;
     font-weight: 900;
     line-height: 0.86;
     letter-spacing: -0.055em;
     color: #ADAD8E; /* desaturated cream-olive — sits visibly behind portrait */
     user-select: none;
     text-shadow: 0 1px 0 rgba(0,0,0,0.04);
+  }
+
+  /* Per-letter typewriter cascade on load */
+  .mega-letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.42em);
+    animation: letter-in .85s cubic-bezier(.16,1,.3,1) var(--d, 0ms) forwards;
+    will-change: transform, opacity;
+  }
+  @keyframes letter-in {
+    0%   { opacity: 0; transform: translateY(0.42em); filter: blur(2px); }
+    60%  { opacity: 1; filter: blur(0); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  /* Blinking cursor that lives at the end of the last word during the cascade,
+     then fades out cleanly when typing finishes */
+  .type-cursor {
+    display: inline-block;
+    width: 0.06em;
+    height: 0.78em;
+    margin-left: 0.04em;
+    background: currentColor;
+    transform: translateY(0.06em);
+    opacity: 0;
+    animation:
+      cursor-show .15s linear var(--cursor-start, 0ms) forwards,
+      cursor-blink .9s steps(2, jump-none) var(--cursor-start, 0ms) infinite,
+      cursor-fade .6s ease-out var(--cursor-end, 0ms) forwards;
+  }
+  @keyframes cursor-show  { to { opacity: 1; } }
+  @keyframes cursor-blink { 50% { opacity: 0; } }
+  @keyframes cursor-fade  { to { opacity: 0; animation-play-state: paused; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mega-letter { opacity: 1 !important; transform: none !important; animation: none !important; filter: none !important; }
+    .type-cursor { display: none; }
   }
 
   /* Brush stroke decorative */
@@ -258,7 +296,7 @@
 
     <!-- Hero portrait (FRONT, overlaps the type) -->
     <div class="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none">
-      <div class="relative w-[55%] md:w-[44%] lg:w-[40%] aspect-[2/3] reveal" data-delay="1">
+      <div class="relative w-[55%] md:w-[44%] lg:w-[40%] aspect-[2/3] reveal" style="transition-delay: 900ms">
         <img
           src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175028_e8442ed7-3772-4822-8949-b8f16db7a28e.png"
           alt="Noomi Skin Care client receiving a custom facial in soft natural light, Chico CA"
@@ -277,7 +315,7 @@
 
   <!-- ===== HERO LOWER LEFT ===== -->
   <div class="relative z-[5] max-w-[1480px] mx-auto px-6 md:px-10 mt-12 md:mt-0 md:absolute md:bottom-[180px] md:left-0 md:right-0 pointer-events-none">
-    <div class="reveal pointer-events-auto" data-delay="2">
+    <div class="reveal pointer-events-auto" style="transition-delay: 1100ms">
       <p class="text-[12px] uppercase tracking-[0.28em] text-cream/65 mb-3">
         <span class="inline-block w-6 h-px align-middle bg-cream/65 mr-3"></span>
         A boutique facial studio · Chico, California
@@ -298,7 +336,7 @@
 
   <!-- ===== THUMB STRIP (bottom) ===== -->
   <div class="relative z-[5] max-w-[1480px] mx-auto px-6 md:px-10 mt-10 md:mt-0 md:absolute md:bottom-10 md:left-0 md:right-0">
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-3 ml-auto md:max-w-[58%] reveal" data-delay="3">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-3 ml-auto md:max-w-[58%] reveal" style="transition-delay: 1300ms">
       <a href="#treatments" class="thumb block aspect-[4/3] overflow-hidden rounded-[3px] ring-1 ring-cream/15">
         <img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175039_536b4582-bb51-41dc-85ef-10f59e7f47f7.png" alt="Custom skincare formulations on a sage green surface" class="w-full h-full object-cover">
       </a>
@@ -659,6 +697,40 @@
 </main>
 
 <script>
+  // Per-letter typewriter cascade for the hero H1
+  (function typeOutHero() {
+    const lines = document.querySelectorAll('.mega-type > span');
+    if (!lines.length) return;
+
+    const CHAR_MS  = 38;   // delay between letters
+    const PAUSE_MS = 130;  // pause between words
+    let delay = 0;
+
+    lines.forEach((line) => {
+      const text = line.textContent;
+      line.textContent = '';
+      for (const ch of text) {
+        const s = document.createElement('span');
+        s.className = 'mega-letter';
+        s.textContent = ch === ' ' ? ' ' : ch;
+        s.style.setProperty('--d', delay + 'ms');
+        line.appendChild(s);
+        delay += CHAR_MS;
+      }
+      delay += PAUSE_MS;
+    });
+
+    // Cursor lives at the end of the final line
+    const lastLine = lines[lines.length - 1];
+    const cursor = document.createElement('span');
+    cursor.className = 'type-cursor';
+    cursor.setAttribute('aria-hidden', 'true');
+    // Start cursor right when the first letter begins, fade out shortly after the last letter lands
+    cursor.style.setProperty('--cursor-start', '0ms');
+    cursor.style.setProperty('--cursor-end', (delay + 250) + 'ms');
+    lastLine.appendChild(cursor);
+  })();
+
   // Reveal on scroll
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) {
