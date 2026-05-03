@@ -18,7 +18,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Geist:wght@300..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -37,9 +37,12 @@
           ink:          '#1F1B14',
         },
         fontFamily: {
-          display: ['"Geist"', 'system-ui', 'sans-serif'],
-          serif:   ['"Fraunces"', 'Georgia', 'serif'],
-          sans:    ['"Geist"', 'system-ui', 'sans-serif'],
+          /* Display & accent — Sofia Pro (using Sofia Sans as free stand-in) */
+          display: ['"Sofia Pro"', '"Sofia Sans"', 'system-ui', 'sans-serif'],
+          /* Italic accents — Sofia Pro Light Italic */
+          serif:   ['"Sofia Pro"', '"Sofia Sans"', 'system-ui', 'sans-serif'],
+          /* Body — Helvetica Neue via system stack */
+          sans:    ['-apple-system', '"Helvetica Neue"', 'Helvetica', 'Arial', 'system-ui', 'sans-serif'],
         },
         letterSpacing: {
           tightest: '-0.05em',
@@ -52,14 +55,35 @@
 
 <style>
   html, body { background:#7B8268; color:#F4EFE0; }
-  body { font-family:'Geist', system-ui, sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
-  .font-display { font-family:'Geist', system-ui, sans-serif; font-weight: 900; }
-  .font-serif   { font-family:'Fraunces', Georgia, serif; font-optical-sizing: auto; }
-  .display-italic { font-style: italic; font-variation-settings: "opsz" 144, "SOFT" 100; }
+  body {
+    /* Helvetica Neue via system stack — falls back to system Helvetica / Arial / system-ui */
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    letter-spacing: -0.005em;
+  }
+
+  /* Display — Sofia Pro (Adobe Fonts) with Sofia Sans (Google Fonts) free fallback */
+  .font-display {
+    font-family: "Sofia Pro", "Sofia Sans", system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .font-serif {
+    /* "Editorial accent" — Sofia Pro Light Italic */
+    font-family: "Sofia Pro", "Sofia Sans", system-ui, sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: -0.01em;
+  }
+  .display-italic {
+    font-style: italic;
+    font-weight: 300;
+  }
 
   /* Mega-type hero */
   .mega-type {
-    font-family: 'Geist', system-ui, sans-serif;
+    font-family: "Sofia Pro", "Sofia Sans", system-ui, sans-serif;
     font-weight: 900;
     line-height: 0.86;
     letter-spacing: -0.055em;
