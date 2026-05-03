@@ -11,7 +11,7 @@
 <meta property="og:title" content="Skin Worth Showing — Noomi Skin Care, Chico CA">
 <meta property="og:description" content="A boutique facial studio on Esplanade. Ten years of trained hands, natural and medical-grade. Book your visit.">
 <meta property="og:url" content="https://www.noomidayspa.com">
-<meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175028_e8442ed7-3772-4822-8949-b8f16db7a28e.png">
+<meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_183116_58caf828-84dc-4254-8de9-3985ed8c9ef2.png">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/5e5c983af5dcee6a82a3fd5f/e730fc05-f2cc-47e8-b911-339d48799fc3/favicon.ico?format=100w">
@@ -37,9 +37,8 @@
           ink:          '#1F1B14',
         },
         fontFamily: {
-          /* Display & accent — Sofia Pro (using Sofia Sans as free stand-in) */
+          /* Display & accents — Sofia Pro (Adobe Fonts) with Sofia Sans fallback */
           display: ['"Sofia Pro"', '"Sofia Sans"', 'system-ui', 'sans-serif'],
-          /* Italic accents — Sofia Pro Light Italic */
           serif:   ['"Sofia Pro"', '"Sofia Sans"', 'system-ui', 'sans-serif'],
           /* Body — Helvetica Neue via system stack */
           sans:    ['-apple-system', '"Helvetica Neue"', 'Helvetica', 'Arial', 'system-ui', 'sans-serif'],
@@ -56,43 +55,27 @@
 <style>
   html, body { background:#7B8268; color:#F4EFE0; }
   body {
-    /* Helvetica Neue via system stack — falls back to system Helvetica / Arial / system-ui */
     font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     letter-spacing: -0.005em;
   }
 
-  /* Display — Sofia Pro (Adobe Fonts) with Sofia Sans (Google Fonts) free fallback */
-  .font-display {
-    font-family: "Sofia Pro", "Sofia Sans", system-ui, sans-serif;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-  }
-  .font-serif {
-    /* "Editorial accent" — Sofia Pro Light Italic */
-    font-family: "Sofia Pro", "Sofia Sans", system-ui, sans-serif;
-    font-weight: 300;
-    font-style: italic;
-    letter-spacing: -0.01em;
-  }
-  .display-italic {
-    font-style: italic;
-    font-weight: 300;
-  }
+  /* Display */
+  .font-display { font-family: "Sofia Pro", "Sofia Sans", system-ui, sans-serif; font-weight: 800; letter-spacing: -0.02em; }
+  .font-serif   { font-family: "Sofia Pro", "Sofia Sans", system-ui, sans-serif; font-weight: 300; font-style: italic; letter-spacing: -0.01em; }
+  .display-italic { font-style: italic; font-weight: 300; }
 
-  /* Mega-type hero — kept on Geist Black for the heavy editorial display feel */
+  /* Hero H1 — Geist Black, sized for left column */
   .mega-type {
     font-family: "Geist", system-ui, sans-serif;
     font-weight: 900;
     line-height: 0.86;
-    letter-spacing: -0.055em;
-    color: #ADAD8E; /* desaturated cream-olive — sits visibly behind portrait */
+    letter-spacing: -0.05em;
+    color: #F4EFE0;
     user-select: none;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.04);
+    text-transform: uppercase;
   }
-
-  /* Per-letter typewriter cascade on load */
   .mega-letter {
     display: inline-block;
     opacity: 0;
@@ -106,32 +89,59 @@
     100% { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
 
-  /* Blinking cursor that lives at the end of the last word during the cascade,
-     then fades out cleanly when typing finishes */
-  .type-cursor {
-    display: inline-block;
-    width: 0.06em;
-    height: 0.78em;
-    margin-left: 0.04em;
-    background: currentColor;
-    transform: translateY(0.06em);
+  /* Generic hero element fade — blur dissolve + slide up */
+  .hero-fade {
     opacity: 0;
-    animation:
-      cursor-show .15s linear var(--cursor-start, 0ms) forwards,
-      cursor-blink .9s steps(2, jump-none) var(--cursor-start, 0ms) infinite,
-      cursor-fade .6s ease-out var(--cursor-end, 0ms) forwards;
+    filter: blur(8px);
+    transform: translateY(10px);
+    animation: hero-in 1.1s cubic-bezier(.16,1,.3,1) var(--delay, 0ms) forwards;
+    will-change: opacity, filter, transform;
   }
-  @keyframes cursor-show  { to { opacity: 1; } }
-  @keyframes cursor-blink { 50% { opacity: 0; } }
-  @keyframes cursor-fade  { to { opacity: 0; animation-play-state: paused; } }
-
-  @media (prefers-reduced-motion: reduce) {
-    .mega-letter { opacity: 1 !important; transform: none !important; animation: none !important; filter: none !important; }
-    .type-cursor { display: none; }
+  @keyframes hero-in {
+    to { opacity: 1; filter: blur(0); transform: translateY(0); }
   }
 
-  /* Brush stroke decorative */
-  .brush-stroke { mix-blend-mode: overlay; opacity: 0.55; }
+  /* Scan box draw-in over the portrait */
+  .scan-box {
+    position: absolute;
+    width: 76px; height: 76px;
+    left: var(--x); top: var(--y);
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+    color: #F4EFE0;
+    pointer-events: none;
+    animation: scan-in .85s cubic-bezier(.16,1,.3,1) var(--d, 0ms) forwards;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+  }
+  .scan-box svg { width: 100%; height: 100%; }
+  .scan-box .label {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-family: "Sofia Pro", "Sofia Sans", system-ui, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    background: rgba(0,0,0,0.5);
+    color: #F4EFE0;
+    padding: 4px 9px;
+    border-radius: 1px;
+    backdrop-filter: blur(8px);
+  }
+  @keyframes scan-in {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+    60% { opacity: 1; }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  }
+
+  /* Trusted-by avatar stack */
+  .avatar-stack { display: inline-flex; }
+  .avatar-stack > * + * { margin-left: -8px; }
+  .avatar { width: 24px; height: 24px; border-radius: 999px; border: 1.5px solid #7B8268; overflow: hidden; background: #F4EFE0; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
   /* Reveal on scroll */
   .reveal { opacity:0; transform:translateY(18px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
@@ -139,6 +149,7 @@
   .reveal[data-delay="1"] { transition-delay:.08s; }
   .reveal[data-delay="2"] { transition-delay:.16s; }
   .reveal[data-delay="3"] { transition-delay:.24s; }
+  .reveal[data-delay="4"] { transition-delay:.32s; }
 
   /* Subtle film grain */
   .grain::after {
@@ -146,13 +157,6 @@
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/></svg>");
     opacity:.06;
     mix-blend-mode:multiply;
-  }
-
-  /* Soft vignette on hero edges */
-  .hero-vignette::before {
-    content:''; position:absolute; inset:0; pointer-events:none;
-    background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.18) 100%);
-    z-index: 2;
   }
 
   /* Tactile button */
@@ -167,14 +171,6 @@
   @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
   .marquee-track { animation: marquee 50s linear infinite; }
 
-  /* Down arrow bobbing */
-  @keyframes bob { 0%,100% { transform: translateY(0); opacity: .85; } 50% { transform: translateY(4px); opacity: 1; } }
-  .bob { animation: bob 2.4s ease-in-out infinite; }
-
-  /* Thumb strip */
-  .thumb { transition: transform .5s cubic-bezier(.16,1,.3,1), filter .5s; filter: saturate(0.95) brightness(0.98); }
-  .thumb:hover { transform: translateY(-6px); filter: saturate(1.05) brightness(1.05); }
-
   /* Mobile menu */
   .mobile-menu { transition: opacity .3s, visibility .3s; }
   .mobile-menu[hidden] { display:none; }
@@ -183,6 +179,20 @@
   .search-bar input { background: transparent; border: none; outline: none; color: #F4EFE0; font-size: 14px; width: 180px; padding: 6px 0; border-bottom: 1px solid rgba(244,239,224,0.45); transition: border-color .3s; }
   .search-bar input:focus { border-color: #F4EFE0; }
   .search-bar input::placeholder { color: rgba(244,239,224,0.6); }
+
+  /* Philosophy paragraph word reveal */
+  .phil-word {
+    display: inline-block;
+    opacity: 0.18;
+    transition: opacity .9s cubic-bezier(.16,1,.3,1);
+  }
+  .phil-word.lit { opacity: 1; }
+
+  /* Honor reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .mega-letter, .hero-fade, .scan-box { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+    .phil-word { opacity: 1 !important; }
+  }
 </style>
 
 <!-- LocalBusiness schema -->
@@ -191,7 +201,7 @@
   "@context":"https://schema.org",
   "@type":"DaySpa",
   "name":"Noomi Skin Care",
-  "image":"https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175028_e8442ed7-3772-4822-8949-b8f16db7a28e.png",
+  "image":"https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_183116_58caf828-84dc-4254-8de9-3985ed8c9ef2.png",
   "telephone":"+1-530-514-0632",
   "url":"https://www.noomidayspa.com",
   "priceRange":"$$",
@@ -219,26 +229,22 @@
 
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-cream focus:text-ink focus:px-4 focus:py-2 focus:rounded-full">Skip to content</a>
 
-<!-- ============== HERO (full-screen, olive bg, mega-type behind portrait) ============== -->
-<section class="relative min-h-[100dvh] bg-olive overflow-hidden hero-vignette">
+<!-- ============== HERO (scan-reveal layered, 3-col composition) ============== -->
+<section class="relative min-h-[100dvh] bg-olive overflow-hidden">
 
   <!-- ===== NAV ===== -->
-  <header class="relative z-30">
+  <header class="relative z-30 hero-fade" style="--delay:200ms">
     <div class="max-w-[1480px] mx-auto px-6 md:px-10 pt-7 md:pt-9 grid grid-cols-12 items-center gap-4">
-
-      <!-- Left: nav -->
       <nav class="hidden md:flex col-span-5 items-center gap-9 text-[14px] text-cream/85">
         <a href="#treatments" class="ed-link hover:text-cream">Treatments</a>
         <a href="#veranda"    class="ed-link hover:text-cream">The&nbsp;Veranda</a>
         <a href="#about"      class="ed-link hover:text-cream">About</a>
-        <a href="#testimonials" class="ed-link hover:text-cream">Journal</a>
+        <a href="#philosophy" class="ed-link hover:text-cream">Philosophy</a>
       </nav>
 
-      <!-- Center: logo -->
       <div class="col-span-2 md:col-span-2 flex justify-start md:justify-center">
         <a href="#" aria-label="Noomi home" class="flex items-center gap-2">
-          <!-- floral SVG mark -->
-          <svg class="w-7 h-7 md:w-8 md:h-8 text-cream" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="w-7 h-7 md:w-8 md:h-8 text-cream" viewBox="0 0 64 64" fill="none">
             <g stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
               <path d="M32 14c-3 5-3 9 0 14 3-5 3-9 0-14Z" fill="currentColor" fill-opacity="0.85"/>
               <path d="M50 32c-5-3-9-3-14 0 5 3 9 3 14 0Z" fill="currentColor" fill-opacity="0.85"/>
@@ -255,7 +261,6 @@
         </a>
       </div>
 
-      <!-- Right: search + phone -->
       <div class="col-span-10 md:col-span-5 flex items-center justify-end gap-4 md:gap-7">
         <form class="search-bar hidden md:flex items-center gap-2" role="search" onsubmit="return false">
           <svg class="w-4 h-4 text-cream/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -272,100 +277,122 @@
       </div>
     </div>
 
-    <!-- Mobile menu -->
     <div id="mobile-menu" class="mobile-menu md:hidden bg-olive-deep border-b border-cream/10 px-6 py-4" hidden>
       <div class="flex flex-col gap-4 text-cream/85 text-[15px]">
         <a href="#treatments" class="ed-link">Treatments</a>
         <a href="#veranda" class="ed-link">The Veranda</a>
         <a href="#about" class="ed-link">About</a>
-        <a href="#testimonials" class="ed-link">Journal</a>
+        <a href="#philosophy" class="ed-link">Philosophy</a>
         <a href="tel:+15305140632" class="ed-link">Call (530) 514-0632</a>
       </div>
     </div>
   </header>
 
+  <!-- ===== TRUSTED-BY BADGE (top-left under nav) ===== -->
+  <div class="absolute top-[88px] md:top-[108px] left-6 md:left-10 z-20 hero-fade" style="--delay:600ms">
+    <div class="inline-flex items-center gap-3 bg-olive-deep/40 border border-cream/15 rounded-full pl-1.5 pr-4 py-1.5 backdrop-blur-sm">
+      <span class="avatar-stack">
+        <span class="avatar"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#F4EFE0"/><circle cx="12" cy="9" r="4" fill="#7B8268"/><path d="M3 22a9 9 0 0 1 18 0" fill="#7B8268"/></svg></span>
+        <span class="avatar"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#D9B89A"/><circle cx="12" cy="9" r="4" fill="#4F5443"/><path d="M3 22a9 9 0 0 1 18 0" fill="#4F5443"/></svg></span>
+        <span class="avatar"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#EBE3CD"/><circle cx="12" cy="9" r="4" fill="#646A53"/><path d="M3 22a9 9 0 0 1 18 0" fill="#646A53"/></svg></span>
+      </span>
+      <span class="text-[12px] uppercase tracking-[0.22em] text-cream/85">Loved by 1,200+ Chico locals</span>
+    </div>
+  </div>
+
   <!-- ===== HERO COMPOSITION ===== -->
-  <div class="relative max-w-[1480px] mx-auto px-6 md:px-10 mt-8 md:mt-12">
+  <div class="relative z-10 max-w-[1480px] mx-auto px-6 md:px-10 pt-32 md:pt-32 lg:pt-36 pb-16 md:pb-24 grid grid-cols-12 gap-x-6 md:gap-x-8 lg:gap-x-12 items-center min-h-[calc(100dvh-100px)]">
 
-    <!-- Mega type (BEHIND the portrait) -->
-    <h1 class="mega-type relative z-[1] text-[19vw] md:text-[18vw] lg:text-[16.5vw] uppercase tracking-tightest pointer-events-none select-none" aria-label="Skin Worth Showing">
-      <span class="block text-left">Skin</span>
-      <span class="block text-left">Worth</span>
-      <span class="block text-right">Showing</span>
-    </h1>
+    <!-- LEFT: H1 + body + CTA -->
+    <div class="col-span-12 md:col-span-4 flex flex-col">
+      <h1 class="mega-type text-[14vw] sm:text-[12vw] md:text-[7vw] lg:text-[6.6vw]" aria-label="Skin Worth Showing">
+        <span class="block">Skin</span>
+        <span class="block font-serif italic font-light text-warm">Worth</span>
+        <span class="block">Showing</span>
+      </h1>
 
-    <!-- Hero portrait (FRONT, overlaps the type) -->
-    <div class="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none">
-      <div class="relative w-[55%] md:w-[44%] lg:w-[40%] aspect-[2/3] reveal" style="transition-delay: 900ms">
-        <img
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175028_e8442ed7-3772-4822-8949-b8f16db7a28e.png"
-          alt="Noomi Skin Care client receiving a custom facial in soft natural light, Chico CA"
-          class="w-full h-full object-cover rounded-[2px] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.4)]"
-          loading="eager" fetchpriority="high">
+      <div class="hero-fade mt-8 md:mt-10" style="--delay:1500ms">
+        <p class="text-[15px] md:text-[16px] text-cream/85 leading-relaxed max-w-[34ch]">
+          Where modern skincare meets the art of slow care. Ten years of trained hands on Esplanade — natural-first, medical-grade when it matters.
+        </p>
       </div>
-    </div>
 
-    <!-- Decorative brush stroke arc (right side) -->
-    <svg class="brush-stroke absolute right-[6%] md:right-[10%] top-[42%] w-[28%] md:w-[22%] z-[1] pointer-events-none" viewBox="0 0 400 400" fill="none" aria-hidden="true">
-      <path d="M40,200 Q200,40 360,200 Q200,360 40,200 Z" stroke="#F4EFE0" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 6" stroke-opacity="0.4"/>
-      <path d="M70,200 Q200,80 330,200" stroke="#F4EFE0" stroke-width="6" stroke-linecap="round" stroke-opacity="0.6" fill="none"/>
-      <path d="M90,210 Q200,110 310,210" stroke="#F4EFE0" stroke-width="3" stroke-linecap="round" stroke-opacity="0.45" fill="none"/>
-    </svg>
-  </div>
-
-  <!-- ===== HERO LOWER LEFT ===== -->
-  <div class="relative z-[5] max-w-[1480px] mx-auto px-6 md:px-10 mt-12 md:mt-0 md:absolute md:bottom-[180px] md:left-0 md:right-0 pointer-events-none">
-    <div class="reveal pointer-events-auto" style="transition-delay: 1100ms">
-      <p class="text-[12px] uppercase tracking-[0.28em] text-cream/65 mb-3">
-        <span class="inline-block w-6 h-px align-middle bg-cream/65 mr-3"></span>
-        A boutique facial studio · Chico, California
-      </p>
-      <p class="font-sans text-[15px] md:text-[16px] text-cream/85 max-w-[36ch] leading-relaxed">
-        Where modern skincare meets the art of slow care. Ten years of trained hands on Esplanade — natural-first, medical-grade when it matters.
-      </p>
-      <div class="mt-6 flex flex-wrap items-center gap-4">
+      <div class="hero-fade mt-8 flex flex-wrap items-center gap-4" style="--delay:1700ms">
         <a href="https://book.gettimely.com/" target="_blank" rel="noopener"
-           class="btn-primary inline-flex items-center gap-2 bg-cream text-ink px-6 py-3 rounded-full text-[13px] tracking-wide hover:bg-warm">
+           class="btn-primary inline-flex items-center gap-2 bg-cream text-ink px-7 py-4 rounded-full text-[14px] hover:bg-warm">
           Book a facial
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
-        <a href="#treatments" class="btn-ghost inline-flex items-center gap-2 px-2 py-3 text-[13px] text-cream hover:text-warm border-b border-cream/30 hover:border-warm">See treatments</a>
+        <a href="#treatments" class="btn-ghost inline-flex items-center gap-2 px-2 py-4 text-[13px] text-cream hover:text-warm border-b border-cream/30 hover:border-warm">See treatments</a>
+      </div>
+    </div>
+
+    <!-- CENTER: portrait with scan boxes -->
+    <div class="col-span-12 md:col-span-5 hero-fade my-8 md:my-0" style="--delay:300ms">
+      <div class="relative aspect-[4/5] w-full overflow-hidden rounded-[3px] bg-olive-deep">
+        <img
+          src="img/hero-front.jpg"
+          alt="A Noomi Skin Care client photographed in soft natural light against a sage-olive plaster wall in Chico, CA"
+          class="absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high">
+
+        <!-- Scan boxes (% positions tuned to face landmarks) -->
+        <div class="scan-box" style="--x:54%; --y:24%; --d:1500ms" aria-hidden="true">
+          <svg viewBox="0 0 80 80" fill="none">
+            <path d="M0 18V0H18M62 0H80V18M80 62V80H62M18 80H0V62" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="label">Hydration</span>
+        </div>
+        <div class="scan-box" style="--x:31%; --y:42%; --d:1750ms" aria-hidden="true">
+          <svg viewBox="0 0 80 80" fill="none">
+            <path d="M0 18V0H18M62 0H80V18M80 62V80H62M18 80H0V62" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="label">Brightening</span>
+        </div>
+        <div class="scan-box" style="--x:60%; --y:58%; --d:2000ms" aria-hidden="true">
+          <svg viewBox="0 0 80 80" fill="none">
+            <path d="M0 18V0H18M62 0H80V18M80 62V80H62M18 80H0V62" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="label">Texture</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: stats column -->
+    <div class="col-span-12 md:col-span-3 flex md:flex-col gap-6 md:gap-12 mt-8 md:mt-0">
+      <!-- Stat 1 -->
+      <div class="hero-fade flex items-start gap-4" style="--delay:1300ms">
+        <span class="grid place-items-center w-10 h-10 rounded-full bg-olive-deep border border-cream/15 shrink-0">
+          <svg class="w-4 h-4 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <div>
+          <p class="font-display text-[36px] md:text-[44px] leading-none text-cream"><span class="counter" data-target="10" data-suffix="+" data-delay="1400">0</span></p>
+          <p class="text-[11px] uppercase tracking-[0.22em] text-cream/65 mt-2">Years with Carla</p>
+        </div>
+      </div>
+
+      <!-- Stat 2 -->
+      <div class="hero-fade flex items-start gap-4" style="--delay:1500ms">
+        <span class="grid place-items-center w-10 h-10 rounded-full bg-olive-deep border border-cream/15 shrink-0">
+          <svg class="w-4 h-4 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="6" r="3"/><circle cx="6" cy="16" r="3"/><circle cx="18" cy="16" r="3"/><path d="M12 9v3M9 14l3-2 3 2"/></svg>
+        </span>
+        <div>
+          <p class="font-display text-[36px] md:text-[44px] leading-none text-cream"><span class="counter" data-target="6" data-delay="1600">0</span></p>
+          <p class="text-[11px] uppercase tracking-[0.22em] text-cream/65 mt-2">Custom treatments</p>
+        </div>
+      </div>
+
+      <!-- Stat 3 -->
+      <div class="hero-fade flex items-start gap-4" style="--delay:1700ms">
+        <span class="grid place-items-center w-10 h-10 rounded-full bg-olive-deep border border-cream/15 shrink-0">
+          <svg class="w-4 h-4 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.5 5.5 6 .5-4.5 4 1.4 6-5.4-3.2L6.6 19l1.4-6L3.5 9l6-.5L12 3z"/></svg>
+        </span>
+        <div>
+          <p class="font-display text-[36px] md:text-[44px] leading-none text-cream"><span class="counter" data-target="5" data-decimals="1" data-delay="1800">0.0</span></p>
+          <p class="text-[11px] uppercase tracking-[0.22em] text-cream/65 mt-2">Google rating</p>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- ===== THUMB STRIP (bottom) ===== -->
-  <div class="relative z-[5] max-w-[1480px] mx-auto px-6 md:px-10 mt-10 md:mt-0 md:absolute md:bottom-10 md:left-0 md:right-0">
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-3 ml-auto md:max-w-[58%] reveal" style="transition-delay: 1300ms">
-      <a href="#treatments" class="thumb block aspect-[4/3] overflow-hidden rounded-[3px] ring-1 ring-cream/15">
-        <img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175039_536b4582-bb51-41dc-85ef-10f59e7f47f7.png" alt="Custom skincare formulations on a sage green surface" class="w-full h-full object-cover">
-      </a>
-      <a href="#about" class="thumb block aspect-[4/3] overflow-hidden rounded-[3px] ring-1 ring-cream/15">
-        <img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175109_0e4c1b39-a978-4573-85d6-8aa52747f419.png" alt="Soft cream applied to a guest's cheekbone during a custom facial" class="w-full h-full object-cover">
-      </a>
-      <a href="#treatments" class="thumb block aspect-[4/3] overflow-hidden rounded-[3px] ring-1 ring-cream/15">
-        <img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175046_181caabf-faf6-4b58-bb19-198203c546a3.png" alt="Hands warming a small dose of cream before a treatment" class="w-full h-full object-cover">
-      </a>
-      <a href="#treatments" class="thumb hidden md:block aspect-[4/3] overflow-hidden rounded-[3px] ring-1 ring-cream/15">
-        <img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175101_130ab6ed-07b4-4952-a2aa-468c64fb27aa.png" alt="The treatment room interior at Noomi Skin Care" class="w-full h-full object-cover">
-      </a>
-      <a href="#treatments" class="thumb hidden md:block aspect-[4/3] overflow-hidden rounded-[3px] ring-1 ring-cream/15">
-        <img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175117_66124e90-2a94-4127-8d35-e8582c0c6694.png" alt="A serum dropper bottle being lifted from the counter" class="w-full h-full object-cover">
-      </a>
-    </div>
-  </div>
-
-  <!-- ===== HERO BOTTOM CORNERS ===== -->
-  <div class="relative z-[5] max-w-[1480px] mx-auto px-6 md:px-10 mt-8 md:mt-0 md:absolute md:bottom-5 md:left-0 md:right-0 pointer-events-none">
-    <div class="flex items-end justify-between text-[11px] uppercase tracking-[0.28em] text-cream/55 pointer-events-auto">
-      <a href="#treatments" class="bob inline-flex items-center gap-2 hover:text-cream">
-        <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        Scroll
-      </a>
-      <span class="font-serif text-[12px] tracking-normal normal-case">2026<sup class="text-[8px]">©</sup> Noomi</span>
-    </div>
-  </div>
-
 </section>
 
 <main id="main" class="relative z-10">
@@ -390,11 +417,9 @@
   </div>
 </section>
 
-<!-- ============== ABOUT (cream bg, image right) ============== -->
+<!-- ============== ABOUT (cream bg) ============== -->
 <section id="about" class="bg-cream text-ink py-24 md:py-36">
   <div class="max-w-[1480px] mx-auto px-6 md:px-10 grid grid-cols-12 gap-8 md:gap-16 items-center">
-
-    <!-- Copy -->
     <div class="col-span-12 md:col-span-7 reveal">
       <p class="text-[12px] uppercase tracking-[0.28em] text-olive-deep mb-6">
         <span class="inline-block w-6 h-px align-middle bg-olive-deep mr-3"></span>
@@ -419,7 +444,6 @@
       </blockquote>
     </div>
 
-    <!-- Image -->
     <div class="col-span-12 md:col-span-5 reveal" data-delay="1">
       <div class="aspect-[4/5] w-full overflow-hidden rounded-[3px]">
         <img
@@ -431,11 +455,10 @@
   </div>
 </section>
 
-<!-- ============== TREATMENTS (olive deep bg, editorial list) ============== -->
+<!-- ============== TREATMENTS ============== -->
 <section id="treatments" class="bg-olive-deep py-24 md:py-36">
   <div class="max-w-[1480px] mx-auto px-6 md:px-10 grid grid-cols-12 gap-8 md:gap-16">
 
-    <!-- Sidebar -->
     <aside class="col-span-12 md:col-span-4 reveal md:sticky md:top-12 self-start">
       <p class="text-[12px] uppercase tracking-[0.28em] text-cream/65 mb-6">
         <span class="inline-block w-6 h-px align-middle bg-cream/65 mr-3"></span>
@@ -456,7 +479,6 @@
       </a>
     </aside>
 
-    <!-- List -->
     <div class="col-span-12 md:col-span-8 reveal" data-delay="1">
       <ul class="divide-y divide-cream/10 border-t border-cream/10">
         <li class="grid grid-cols-12 gap-4 py-7 md:py-9 items-baseline group">
@@ -516,15 +538,17 @@
   </div>
 </section>
 
-<!-- ============== THE VERANDA (full-bleed image hero) ============== -->
+<!-- ============== THE VERANDA (video background) ============== -->
 <section id="veranda" class="relative">
-  <div class="relative h-[88vh] min-h-[680px] w-full overflow-hidden">
-    <img
-      src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175127_044b3ed4-c88f-4efb-b545-47aa9cf697fd.png"
-      alt="The Veranda — Noomi Skin Care's private outdoor patio"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="lazy">
-    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(31,27,20,0) 30%, rgba(31,27,20,0.7) 100%);"></div>
+  <div class="relative h-[88vh] min-h-[680px] w-full overflow-hidden bg-olive-dark">
+    <!-- Video bg -->
+    <video
+      autoplay muted loop playsinline preload="metadata"
+      poster="img/veranda-poster.jpg"
+      class="absolute inset-0 w-full h-full object-cover">
+      <source src="img/veranda.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(31,27,20,0) 25%, rgba(31,27,20,0.78) 100%);"></div>
 
     <div class="absolute inset-0">
       <div class="max-w-[1480px] mx-auto px-6 md:px-10 h-full flex items-end pb-16 md:pb-20">
@@ -553,9 +577,24 @@
   </div>
 </section>
 
-<!-- ============== TESTIMONIALS (cream bg) ============== -->
-<section id="testimonials" class="bg-cream text-ink py-24 md:py-36">
-  <div class="max-w-[1480px] mx-auto px-6 md:px-10">
+<!-- ============== PHILOSOPHY (big paragraph word-reveal) ============== -->
+<section id="philosophy" class="bg-cream text-ink py-32 md:py-48">
+  <div class="max-w-[1100px] mx-auto px-6 md:px-10">
+    <p class="reveal text-[12px] uppercase tracking-[0.28em] text-olive-deep mb-10">
+      <span class="inline-block w-6 h-px align-middle bg-olive-deep mr-3"></span>
+      Philosophy
+    </p>
+
+    <p id="phil-text" class="font-display text-[28px] md:text-[44px] lg:text-[52px] leading-[1.18] tracking-tightx text-ink max-w-[20ch]" style="max-width: 26ch">
+      <!-- words injected via JS for staggered reveal -->
+      At Noomi, skincare is slow, considered, and built around the person in the chair. Carla reads what your skin needs that day, then shapes the treatment for it. No scripts. No rotations. No upsells. Just trained hands and ten years of care.
+    </p>
+  </div>
+</section>
+
+<!-- ============== TESTIMONIALS ============== -->
+<section id="testimonials" class="bg-cream text-ink pt-0 pb-24 md:pb-36">
+  <div class="max-w-[1480px] mx-auto px-6 md:px-10 pt-20 md:pt-28 border-t border-ink/10">
     <div class="grid grid-cols-12 gap-8 md:gap-16 items-end mb-14 md:mb-20">
       <div class="col-span-12 md:col-span-7 reveal">
         <p class="text-[12px] uppercase tracking-[0.28em] text-olive-deep mb-6">
@@ -686,7 +725,6 @@
   </div>
 </section>
 
-<!-- ============== FOOTER ============== -->
 <footer class="py-10 bg-olive-dark text-cream/55 border-t border-cream/10">
   <div class="max-w-[1480px] mx-auto px-6 md:px-10 flex flex-col md:flex-row md:items-center justify-between gap-4 text-[12px]">
     <p>© <span id="yr">2026</span> Noomi Skin Care · Chico, California</p>
@@ -697,41 +735,51 @@
 </main>
 
 <script>
-  // Per-letter typewriter cascade for the hero H1
+  /* ============ Hero H1 letter cascade ============ */
   (function typeOutHero() {
     const lines = document.querySelectorAll('.mega-type > span');
     if (!lines.length) return;
-
-    const CHAR_MS  = 38;   // delay between letters
-    const PAUSE_MS = 130;  // pause between words
+    const CHAR_MS  = 38;
+    const PAUSE_MS = 130;
     let delay = 0;
-
     lines.forEach((line) => {
       const text = line.textContent;
       line.textContent = '';
       for (const ch of text) {
         const s = document.createElement('span');
         s.className = 'mega-letter';
-        s.textContent = ch === ' ' ? ' ' : ch;
+        s.textContent = ch === ' ' ? ' ' : ch;
         s.style.setProperty('--d', delay + 'ms');
         line.appendChild(s);
         delay += CHAR_MS;
       }
       delay += PAUSE_MS;
     });
-
-    // Cursor lives at the end of the final line
-    const lastLine = lines[lines.length - 1];
-    const cursor = document.createElement('span');
-    cursor.className = 'type-cursor';
-    cursor.setAttribute('aria-hidden', 'true');
-    // Start cursor right when the first letter begins, fade out shortly after the last letter lands
-    cursor.style.setProperty('--cursor-start', '0ms');
-    cursor.style.setProperty('--cursor-end', (delay + 250) + 'ms');
-    lastLine.appendChild(cursor);
   })();
 
-  // Reveal on scroll
+  /* ============ Number counters ============ */
+  (function counters() {
+    document.querySelectorAll('.counter').forEach(el => {
+      const target   = parseFloat(el.dataset.target);
+      const suffix   = el.dataset.suffix || '';
+      const decimals = parseInt(el.dataset.decimals || '0');
+      const startAt  = parseInt(el.dataset.delay || '1400');
+      const duration = 1300;
+      setTimeout(() => {
+        const t0 = performance.now();
+        function tick(now) {
+          const t = Math.min((now - t0) / duration, 1);
+          const eased = 1 - Math.pow(1 - t, 3);
+          const v = (eased * target).toFixed(decimals);
+          el.textContent = v + suffix;
+          if (t < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }, startAt);
+    });
+  })();
+
+  /* ============ Reveal-on-scroll ============ */
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
@@ -739,7 +787,44 @@
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Mobile menu toggle
+  /* ============ Philosophy paragraph word reveal ============
+     Wrap every word in a span and brighten them as the section scrolls. */
+  (function philText() {
+    const p = document.getElementById('phil-text');
+    if (!p) return;
+    const text = p.textContent.trim();
+    p.textContent = '';
+    text.split(/\s+/).forEach((w, i, arr) => {
+      const s = document.createElement('span');
+      s.className = 'phil-word';
+      s.textContent = w;
+      p.appendChild(s);
+      if (i < arr.length - 1) p.appendChild(document.createTextNode(' '));
+    });
+
+    const words = p.querySelectorAll('.phil-word');
+    function update() {
+      const rect = p.getBoundingClientRect();
+      const winH = window.innerHeight;
+      // progress: how far the paragraph is through the viewport center
+      const start = winH * 0.85;
+      const end   = winH * 0.10;
+      const span  = start - end;
+      const progress = Math.max(0, Math.min(1, (start - rect.top) / span));
+      const litCount = Math.round(progress * words.length);
+      words.forEach((w, idx) => w.classList.toggle('lit', idx < litCount));
+    }
+    let raf = null;
+    function onScroll() {
+      if (raf) return;
+      raf = requestAnimationFrame(() => { update(); raf = null; });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  })();
+
+  /* ============ Mobile menu toggle ============ */
   const btn = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
   if (btn && menu) {
@@ -753,7 +838,6 @@
     }));
   }
 
-  // Year
   document.getElementById('yr').textContent = new Date().getFullYear();
 </script>
 </body>
