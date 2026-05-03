@@ -4,21 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Custom Facials in Chico, CA | Noomi Skin Care on Esplanade</title>
-<meta name="description" content="Custom facials, chemical peels and dermaplane in Chico, CA by Carla — 10+ years experience. Group bookings on The Veranda patio. Book online or call 530-514-0632.">
+<meta name="description" content="Slow, custom facials in Chico, CA by Carla — ten years of trained hands, natural and medical-grade. Group bookings on The Veranda. Book online or call 530-514-0632.">
 <link rel="canonical" href="https://www.noomidayspa.com">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Chico's Boutique Facial Studio — Noomi Skin Care">
-<meta property="og:description" content="Personalized facials and skin treatments on Esplanade in Chico. Natural and medical-grade results. Book your visit or grab a Veranda group session.">
+<meta property="og:title" content="Slow Radiant Skin — Noomi Skin Care, Chico CA">
+<meta property="og:description" content="A boutique facial studio on Esplanade. Ten years of trained hands, natural and medical-grade. Book your visit.">
 <meta property="og:url" content="https://www.noomidayspa.com">
-<meta property="og:image" content="https://images.squarespace-cdn.com/content/v1/5e5c983af5dcee6a82a3fd5f/1584305901582-368BH8APUFWKA9BGW7VO/noomilogo2-01.png">
+<meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175028_e8442ed7-3772-4822-8949-b8f16db7a28e.png">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/5e5c983af5dcee6a82a3fd5f/e730fc05-f2cc-47e8-b911-339d48799fc3/favicon.ico?format=100w">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Geist:wght@300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Geist:wght@300..900&display=swap" rel="stylesheet">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -26,21 +26,24 @@
     theme: {
       extend: {
         colors: {
-          cream:      '#FAF6F0',
-          'cream-2':  '#F0E9DE',
-          'cream-3':  '#E8DECF',
-          ink:        '#1C1714',
-          'ink-soft': '#5A4A3F',
-          'ink-mute': '#8B7B6E',
-          accent:     '#B65D44',
-          'accent-2': '#D08F75',
+          olive:        '#7B8268',
+          'olive-deep': '#646A53',
+          'olive-dark': '#4F5443',
+          cream:        '#F4EFE0',
+          'cream-2':    '#EBE3CD',
+          'cream-soft': '#D4CCB3',
+          'cream-mute': '#9B9579',
+          warm:         '#D9B89A',
+          ink:          '#1F1B14',
         },
         fontFamily: {
-          display: ['"Fraunces"', 'Georgia', 'serif'],
+          display: ['"Geist"', 'system-ui', 'sans-serif'],
+          serif:   ['"Fraunces"', 'Georgia', 'serif'],
           sans:    ['"Geist"', 'system-ui', 'sans-serif'],
         },
         letterSpacing: {
-          tightest: '-0.04em',
+          tightest: '-0.05em',
+          tightx:   '-0.04em',
         },
       }
     }
@@ -48,49 +51,76 @@
 </script>
 
 <style>
-  html, body { background:#FAF6F0; color:#1C1714; }
+  html, body { background:#7B8268; color:#F4EFE0; }
   body { font-family:'Geist', system-ui, sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
-  .font-display { font-family:'Fraunces', Georgia, serif; font-optical-sizing:auto; }
-  .display-italic { font-style:italic; font-variation-settings:"opsz" 144, "SOFT" 100; }
+  .font-display { font-family:'Geist', system-ui, sans-serif; font-weight: 900; }
+  .font-serif   { font-family:'Fraunces', Georgia, serif; font-optical-sizing: auto; }
+  .display-italic { font-style: italic; font-variation-settings: "opsz" 144, "SOFT" 100; }
 
-  /* Editorial reveal — pure CSS, intersection-observer triggered */
+  /* Mega-type hero */
+  .mega-type {
+    font-family: 'Geist', system-ui, sans-serif;
+    font-weight: 900;
+    line-height: 0.86;
+    letter-spacing: -0.055em;
+    color: #ADAD8E; /* desaturated cream-olive — sits visibly behind portrait */
+    user-select: none;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.04);
+  }
+
+  /* Brush stroke decorative */
+  .brush-stroke { mix-blend-mode: overlay; opacity: 0.55; }
+
+  /* Reveal on scroll */
   .reveal { opacity:0; transform:translateY(18px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
   .reveal.in { opacity:1; transform:translateY(0); }
   .reveal[data-delay="1"] { transition-delay:.08s; }
   .reveal[data-delay="2"] { transition-delay:.16s; }
   .reveal[data-delay="3"] { transition-delay:.24s; }
-  .reveal[data-delay="4"] { transition-delay:.32s; }
 
-  /* Subtle grain — fixed, pointer-events-none per taste-skill perf rule */
+  /* Subtle film grain */
   .grain::after {
-    content:''; position:fixed; inset:0; z-index:1; pointer-events:none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.6'/></svg>");
-    opacity:.035;
+    content:''; position:fixed; inset:0; z-index:60; pointer-events:none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/></svg>");
+    opacity:.06;
     mix-blend-mode:multiply;
   }
 
-  /* Tactile button feedback */
-  .btn-primary, .btn-ghost { transition: transform .25s cubic-bezier(.16,1,.3,1), background-color .3s, color .3s, border-color .3s; }
+  /* Soft vignette on hero edges */
+  .hero-vignette::before {
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.18) 100%);
+    z-index: 2;
+  }
+
+  /* Tactile button */
+  .btn-primary, .btn-ghost { transition: transform .25s cubic-bezier(.16,1,.3,1), background-color .3s, color .3s, border-color .3s, opacity .3s; }
   .btn-primary:active, .btn-ghost:active { transform: translateY(1px); }
 
-  /* Marquee for the hours/announcement */
-  @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
-  .marquee-track { animation: marquee 38s linear infinite; }
-
-  /* Custom underline for editorial links */
+  /* Editorial underline */
   .ed-link { background-image: linear-gradient(currentColor, currentColor); background-size: 100% 1px; background-repeat:no-repeat; background-position: 0 100%; padding-bottom: 2px; transition: background-size .4s cubic-bezier(.16,1,.3,1); }
   .ed-link:hover { background-size: 0% 1px; background-position: 100% 100%; }
 
-  /* Veranda overlay gradient */
-  .veranda-fade { background: linear-gradient(180deg, rgba(28,23,20,0) 0%, rgba(28,23,20,0) 35%, rgba(28,23,20,0.65) 100%); }
+  /* Marquee */
+  @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  .marquee-track { animation: marquee 50s linear infinite; }
 
-  /* Float animation for the small badge */
-  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-  .float-slow { animation: float 6s ease-in-out infinite; }
+  /* Down arrow bobbing */
+  @keyframes bob { 0%,100% { transform: translateY(0); opacity: .85; } 50% { transform: translateY(4px); opacity: 1; } }
+  .bob { animation: bob 2.4s ease-in-out infinite; }
+
+  /* Thumb strip */
+  .thumb { transition: transform .5s cubic-bezier(.16,1,.3,1), filter .5s; filter: saturate(0.95) brightness(0.98); }
+  .thumb:hover { transform: translateY(-6px); filter: saturate(1.05) brightness(1.05); }
 
   /* Mobile menu */
   .mobile-menu { transition: opacity .3s, visibility .3s; }
   .mobile-menu[hidden] { display:none; }
+
+  /* Custom search input */
+  .search-bar input { background: transparent; border: none; outline: none; color: #F4EFE0; font-size: 14px; width: 180px; padding: 6px 0; border-bottom: 1px solid rgba(244,239,224,0.45); transition: border-color .3s; }
+  .search-bar input:focus { border-color: #F4EFE0; }
+  .search-bar input::placeholder { color: rgba(244,239,224,0.6); }
 </style>
 
 <!-- LocalBusiness schema -->
@@ -99,7 +129,7 @@
   "@context":"https://schema.org",
   "@type":"DaySpa",
   "name":"Noomi Skin Care",
-  "image":"https://images.squarespace-cdn.com/content/v1/5e5c983af5dcee6a82a3fd5f/1584305901582-368BH8APUFWKA9BGW7VO/noomilogo2-01.png",
+  "image":"https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175028_e8442ed7-3772-4822-8949-b8f16db7a28e.png",
   "telephone":"+1-530-514-0632",
   "url":"https://www.noomidayspa.com",
   "priceRange":"$$",
@@ -123,211 +153,242 @@
 </script>
 </head>
 
-<body class="grain antialiased">
+<body class="grain">
 
-<!-- Skip link -->
-<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-ink focus:text-cream focus:px-4 focus:py-2 focus:rounded-full">Skip to content</a>
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-cream focus:text-ink focus:px-4 focus:py-2 focus:rounded-full">Skip to content</a>
 
-<!-- ============== NAV ============== -->
-<header class="relative z-30">
-  <div class="max-w-[1400px] mx-auto px-6 md:px-10 pt-7 md:pt-9 flex items-center justify-between">
-    <!-- Wordmark -->
-    <a href="#" class="flex items-center gap-3 group" aria-label="Noomi Skin Care home">
-      <span class="font-display text-[28px] md:text-[32px] leading-none tracking-tightest text-ink">noomi</span>
-      <span class="hidden md:inline text-[11px] uppercase tracking-[0.22em] text-ink-mute pt-1">Skin · Chico</span>
-    </a>
+<!-- ============== HERO (full-screen, olive bg, mega-type behind portrait) ============== -->
+<section class="relative min-h-[100dvh] bg-olive overflow-hidden hero-vignette">
 
-    <!-- Desktop nav -->
-    <nav class="hidden md:flex items-center gap-9 text-[14px] text-ink-soft">
-      <a href="#treatments" class="ed-link hover:text-ink">Treatments</a>
-      <a href="#veranda"    class="ed-link hover:text-ink">The Veranda</a>
-      <a href="#about"      class="ed-link hover:text-ink">About</a>
-      <a href="#testimonials" class="ed-link hover:text-ink">Reviews</a>
-      <a href="#visit"      class="ed-link hover:text-ink">Visit</a>
-    </nav>
+  <!-- ===== NAV ===== -->
+  <header class="relative z-30">
+    <div class="max-w-[1480px] mx-auto px-6 md:px-10 pt-7 md:pt-9 grid grid-cols-12 items-center gap-4">
 
-    <!-- CTA + mobile toggle -->
-    <div class="flex items-center gap-3">
-      <a href="https://book.gettimely.com/" target="_blank" rel="noopener"
-         class="btn-primary hidden sm:inline-flex items-center gap-2 bg-ink text-cream px-5 py-2.5 rounded-full text-[13px] tracking-wide hover:bg-accent">
-        Book Now
-        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      <!-- Left: nav -->
+      <nav class="hidden md:flex col-span-5 items-center gap-9 text-[14px] text-cream/85">
+        <a href="#treatments" class="ed-link hover:text-cream">Treatments</a>
+        <a href="#veranda"    class="ed-link hover:text-cream">The&nbsp;Veranda</a>
+        <a href="#about"      class="ed-link hover:text-cream">About</a>
+        <a href="#testimonials" class="ed-link hover:text-cream">Journal</a>
+      </nav>
+
+      <!-- Center: logo -->
+      <div class="col-span-2 md:col-span-2 flex justify-start md:justify-center">
+        <a href="#" aria-label="Noomi home" class="flex items-center gap-2">
+          <!-- floral SVG mark -->
+          <svg class="w-7 h-7 md:w-8 md:h-8 text-cream" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M32 14c-3 5-3 9 0 14 3-5 3-9 0-14Z" fill="currentColor" fill-opacity="0.85"/>
+              <path d="M50 32c-5-3-9-3-14 0 5 3 9 3 14 0Z" fill="currentColor" fill-opacity="0.85"/>
+              <path d="M32 50c3-5 3-9 0-14-3 5-3 9 0 14Z" fill="currentColor" fill-opacity="0.85"/>
+              <path d="M14 32c5 3 9 3 14 0-5-3-9-3-14 0Z" fill="currentColor" fill-opacity="0.85"/>
+              <path d="M44.5 19.5c-4 1.5-7 4.5-8.5 8.5 4-1.5 7-4.5 8.5-8.5Z" fill="currentColor" fill-opacity="0.6"/>
+              <path d="M44.5 44.5c-1.5-4-4.5-7-8.5-8.5 1.5 4 4.5 7 8.5 8.5Z" fill="currentColor" fill-opacity="0.6"/>
+              <path d="M19.5 44.5c4-1.5 7-4.5 8.5-8.5-4 1.5-7 4.5-8.5 8.5Z" fill="currentColor" fill-opacity="0.6"/>
+              <path d="M19.5 19.5c1.5 4 4.5 7 8.5 8.5-1.5-4-4.5-7-8.5-8.5Z" fill="currentColor" fill-opacity="0.6"/>
+              <circle cx="32" cy="32" r="3" fill="currentColor"/>
+            </g>
+          </svg>
+          <span class="font-serif text-[20px] md:text-[22px] tracking-tightx text-cream md:hidden">noomi</span>
+        </a>
+      </div>
+
+      <!-- Right: search + phone -->
+      <div class="col-span-10 md:col-span-5 flex items-center justify-end gap-4 md:gap-7">
+        <form class="search-bar hidden md:flex items-center gap-2" role="search" onsubmit="return false">
+          <svg class="w-4 h-4 text-cream/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="search" placeholder="Search treatments" aria-label="Search">
+        </form>
+        <a href="tel:+15305140632" class="hidden md:flex items-center gap-2 text-[14px] text-cream hover:text-warm">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          <span>(530) 514-0632</span>
+        </a>
+
+        <button id="menu-toggle" class="md:hidden w-10 h-10 grid place-items-center rounded-full border border-cream/30 text-cream" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 17h18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden bg-olive-deep border-b border-cream/10 px-6 py-4" hidden>
+      <div class="flex flex-col gap-4 text-cream/85 text-[15px]">
+        <a href="#treatments" class="ed-link">Treatments</a>
+        <a href="#veranda" class="ed-link">The Veranda</a>
+        <a href="#about" class="ed-link">About</a>
+        <a href="#testimonials" class="ed-link">Journal</a>
+        <a href="tel:+15305140632" class="ed-link">Call (530) 514-0632</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO COMPOSITION ===== -->
+  <div class="relative max-w-[1480px] mx-auto px-6 md:px-10 mt-8 md:mt-12">
+
+    <!-- Mega type (BEHIND the portrait) -->
+    <h1 class="mega-type relative z-[1] text-[19vw] md:text-[18vw] lg:text-[16.5vw] uppercase tracking-tightest pointer-events-none select-none" aria-label="Slow Radiant Skin">
+      <span class="block text-left">Slow</span>
+      <span class="block text-left">Radiant</span>
+      <span class="block text-right">Skin</span>
+    </h1>
+
+    <!-- Hero portrait (FRONT, overlaps the type) -->
+    <div class="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none">
+      <div class="relative w-[55%] md:w-[44%] lg:w-[40%] aspect-[2/3] reveal" data-delay="1">
+        <img
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175028_e8442ed7-3772-4822-8949-b8f16db7a28e.png"
+          alt="Noomi Skin Care client receiving a custom facial in soft natural light, Chico CA"
+          class="w-full h-full object-cover rounded-[2px] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.4)]"
+          loading="eager" fetchpriority="high">
+      </div>
+    </div>
+
+    <!-- Decorative brush stroke arc (right side) -->
+    <svg class="brush-stroke absolute right-[6%] md:right-[10%] top-[42%] w-[28%] md:w-[22%] z-[1] pointer-events-none" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+      <path d="M40,200 Q200,40 360,200 Q200,360 40,200 Z" stroke="#F4EFE0" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 6" stroke-opacity="0.4"/>
+      <path d="M70,200 Q200,80 330,200" stroke="#F4EFE0" stroke-width="6" stroke-linecap="round" stroke-opacity="0.6" fill="none"/>
+      <path d="M90,210 Q200,110 310,210" stroke="#F4EFE0" stroke-width="3" stroke-linecap="round" stroke-opacity="0.45" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- ===== HERO LOWER LEFT ===== -->
+  <div class="relative z-[5] max-w-[1480px] mx-auto px-6 md:px-10 mt-12 md:mt-0 md:absolute md:bottom-[180px] md:left-0 md:right-0 pointer-events-none">
+    <div class="reveal pointer-events-auto" data-delay="2">
+      <p class="text-[12px] uppercase tracking-[0.28em] text-cream/65 mb-3">
+        <span class="inline-block w-6 h-px align-middle bg-cream/65 mr-3"></span>
+        A boutique facial studio · Chico, California
+      </p>
+      <p class="font-sans text-[15px] md:text-[16px] text-cream/85 max-w-[36ch] leading-relaxed">
+        Where modern skincare meets the art of slow care. Ten years of trained hands on Esplanade — natural-first, medical-grade when it matters.
+      </p>
+      <div class="mt-6 flex flex-wrap items-center gap-4">
+        <a href="https://book.gettimely.com/" target="_blank" rel="noopener"
+           class="btn-primary inline-flex items-center gap-2 bg-cream text-ink px-6 py-3 rounded-full text-[13px] tracking-wide hover:bg-warm">
+          Book a facial
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#treatments" class="btn-ghost inline-flex items-center gap-2 px-2 py-3 text-[13px] text-cream hover:text-warm border-b border-cream/30 hover:border-warm">See treatments</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== THUMB STRIP (bottom) ===== -->
+  <div class="relative z-[5] max-w-[1480px] mx-auto px-6 md:px-10 mt-10 md:mt-0 md:absolute md:bottom-10 md:left-0 md:right-0">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-3 ml-auto md:max-w-[58%] reveal" data-delay="3">
+      <a href="#treatments" class="thumb block aspect-[4/3] overflow-hidden rounded-[3px] ring-1 ring-cream/15">
+        <img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175039_536b4582-bb51-41dc-85ef-10f59e7f47f7.png" alt="Custom skincare formulations on a sage green surface" class="w-full h-full object-cover">
       </a>
-      <button id="menu-toggle" class="md:hidden w-10 h-10 grid place-items-center rounded-full border border-ink/10" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 17h18"/></svg>
-      </button>
+      <a href="#about" class="thumb block aspect-[4/3] overflow-hidden rounded-[3px] ring-1 ring-cream/15">
+        <img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175109_0e4c1b39-a978-4573-85d6-8aa52747f419.png" alt="Soft cream applied to a guest's cheekbone during a custom facial" class="w-full h-full object-cover">
+      </a>
+      <a href="#treatments" class="thumb block aspect-[4/3] overflow-hidden rounded-[3px] ring-1 ring-cream/15">
+        <img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175046_181caabf-faf6-4b58-bb19-198203c546a3.png" alt="Hands warming a small dose of cream before a treatment" class="w-full h-full object-cover">
+      </a>
+      <a href="#treatments" class="thumb hidden md:block aspect-[4/3] overflow-hidden rounded-[3px] ring-1 ring-cream/15">
+        <img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175101_130ab6ed-07b4-4952-a2aa-468c64fb27aa.png" alt="The treatment room interior at Noomi Skin Care" class="w-full h-full object-cover">
+      </a>
+      <a href="#treatments" class="thumb hidden md:block aspect-[4/3] overflow-hidden rounded-[3px] ring-1 ring-cream/15">
+        <img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175117_66124e90-2a94-4127-8d35-e8582c0c6694.png" alt="A serum dropper bottle being lifted from the counter" class="w-full h-full object-cover">
+      </a>
     </div>
   </div>
 
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="mobile-menu md:hidden bg-cream border-b border-ink/10 px-6 py-4" hidden>
-    <div class="flex flex-col gap-4 text-ink-soft text-[15px]">
-      <a href="#treatments" class="ed-link">Treatments</a>
-      <a href="#veranda" class="ed-link">The Veranda</a>
-      <a href="#about" class="ed-link">About</a>
-      <a href="#testimonials" class="ed-link">Reviews</a>
-      <a href="#visit" class="ed-link">Visit</a>
-      <a href="https://book.gettimely.com/" target="_blank" rel="noopener" class="btn-primary inline-flex w-fit items-center gap-2 bg-ink text-cream px-5 py-2.5 rounded-full text-[13px]">Book Now</a>
+  <!-- ===== HERO BOTTOM CORNERS ===== -->
+  <div class="relative z-[5] max-w-[1480px] mx-auto px-6 md:px-10 mt-8 md:mt-0 md:absolute md:bottom-5 md:left-0 md:right-0 pointer-events-none">
+    <div class="flex items-end justify-between text-[11px] uppercase tracking-[0.28em] text-cream/55 pointer-events-auto">
+      <a href="#treatments" class="bob inline-flex items-center gap-2 hover:text-cream">
+        <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        Scroll
+      </a>
+      <span class="font-serif text-[12px] tracking-normal normal-case">2026<sup class="text-[8px]">©</sup> Noomi</span>
     </div>
   </div>
-</header>
+
+</section>
 
 <main id="main" class="relative z-10">
 
-<!-- ============== HERO ============== -->
-<section class="relative min-h-[calc(100dvh-90px)] pt-10 md:pt-16 pb-20 md:pb-32">
-  <div class="max-w-[1400px] mx-auto px-6 md:px-10 grid grid-cols-12 gap-6 md:gap-10 items-end">
-
-    <!-- Text col -->
-    <div class="col-span-12 md:col-span-7 lg:col-span-7 reveal">
-      <p class="text-[12px] uppercase tracking-[0.28em] text-ink-mute mb-8">
-        <span class="inline-block w-6 h-px align-middle bg-ink-mute mr-3"></span>
-        Boutique facial studio · Esplanade, Chico
-      </p>
-
-      <h1 class="font-display text-[56px] sm:text-[72px] md:text-[96px] lg:text-[112px] leading-[0.95] tracking-tightest text-ink max-w-[14ch]">
-        Custom facials,<br>
-        <span class="display-italic font-light text-accent">built around</span><br>
-        your skin.
-      </h1>
-
-      <p class="mt-8 md:mt-10 text-[17px] md:text-[19px] text-ink-soft max-w-[48ch] leading-relaxed">
-        Carla has been treating Chico's skin for over a decade. Walk in tired — leave glowing. Natural-first formulations, medical-grade results when it matters.
-      </p>
-
-      <div class="mt-10 flex flex-wrap items-center gap-4">
-        <a href="https://book.gettimely.com/" target="_blank" rel="noopener"
-           class="btn-primary inline-flex items-center gap-2 bg-ink text-cream px-7 py-4 rounded-full text-[14px] tracking-wide hover:bg-accent">
-          Book your facial
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#treatments" class="btn-ghost inline-flex items-center gap-2 px-2 py-4 text-[14px] text-ink hover:text-accent border-b border-ink/30 hover:border-accent">
-          See treatments
-        </a>
-      </div>
-
-      <div class="mt-14 grid grid-cols-3 max-w-[520px] divide-x divide-ink/10">
-        <div class="pr-4">
-          <p class="font-display text-[28px] md:text-[34px] leading-none">10<span class="text-accent">+</span></p>
-          <p class="text-[11px] uppercase tracking-[0.2em] text-ink-mute mt-2">Years with Carla</p>
-        </div>
-        <div class="px-4">
-          <p class="font-display text-[28px] md:text-[34px] leading-none">3</p>
-          <p class="text-[11px] uppercase tracking-[0.2em] text-ink-mute mt-2">Pro skincare lines</p>
-        </div>
-        <div class="pl-4">
-          <p class="font-display text-[28px] md:text-[34px] leading-none">5.0</p>
-          <p class="text-[11px] uppercase tracking-[0.2em] text-ink-mute mt-2">Google rating</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Image col -->
-    <div class="col-span-12 md:col-span-5 lg:col-span-5 reveal" data-delay="2">
-      <div class="relative aspect-[4/5] w-full overflow-hidden rounded-[6px]">
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/5e5c983af5dcee6a82a3fd5f/b1919120-8a1d-42bc-9b4b-7ae41dc4afee/IMG_6014_2.jpg?format=1500w"
-          alt="Carla preparing a custom facial treatment at Noomi Skin Care in Chico, CA"
-          class="absolute inset-0 w-full h-full object-cover"
-          loading="eager" fetchpriority="high">
-        <!-- Soft fade into the page bg -->
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-cream/40"></div>
-      </div>
-
-      <!-- Floating badge -->
-      <div class="float-slow -mt-12 ml-6 md:-ml-10 lg:-ml-14 relative z-10 inline-flex items-center gap-3 bg-cream border border-ink/10 rounded-full pl-2 pr-5 py-2 shadow-[0_10px_30px_-15px_rgba(28,23,20,0.25)]">
-        <span class="grid place-items-center w-8 h-8 rounded-full bg-accent/15 text-accent">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></svg>
-        </span>
-        <div class="leading-tight">
-          <p class="font-display text-[14px]">Open Tue – Sat</p>
-          <p class="text-[11px] text-ink-mute">Same-week openings most weeks</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============== ANNOUNCE MARQUEE ============== -->
-<section aria-hidden="true" class="border-y border-ink/10 bg-cream-2 overflow-hidden">
-  <div class="marquee-track flex gap-14 py-4 whitespace-nowrap text-[12px] uppercase tracking-[0.3em] text-ink-soft">
-    <!-- duplicated for seamless loop -->
-    <span>Custom Facials</span><span class="text-accent">·</span>
-    <span>Chemical Peels</span><span class="text-accent">·</span>
-    <span>Dermaplane Renewal</span><span class="text-accent">·</span>
-    <span>Microcurrent Lift</span><span class="text-accent">·</span>
-    <span>Nano Infusion</span><span class="text-accent">·</span>
-    <span>Brightening</span><span class="text-accent">·</span>
-    <span>Group Bookings on The Veranda</span><span class="text-accent">·</span>
-    <span>Custom Facials</span><span class="text-accent">·</span>
-    <span>Chemical Peels</span><span class="text-accent">·</span>
-    <span>Dermaplane Renewal</span><span class="text-accent">·</span>
-    <span>Microcurrent Lift</span><span class="text-accent">·</span>
-    <span>Nano Infusion</span><span class="text-accent">·</span>
-    <span>Brightening</span><span class="text-accent">·</span>
-    <span>Group Bookings on The Veranda</span><span class="text-accent">·</span>
+<section aria-hidden="true" class="border-y border-cream/10 bg-olive-deep overflow-hidden">
+  <div class="marquee-track flex gap-14 py-4 whitespace-nowrap text-[12px] uppercase tracking-[0.32em] text-cream/70">
+    <span>Custom Facials</span><span class="text-warm">·</span>
+    <span>Chemical Peels</span><span class="text-warm">·</span>
+    <span>Dermaplane Renewal</span><span class="text-warm">·</span>
+    <span>Microcurrent Lift</span><span class="text-warm">·</span>
+    <span>Nano Infusion</span><span class="text-warm">·</span>
+    <span>Brightening</span><span class="text-warm">·</span>
+    <span>Group Bookings on The Veranda</span><span class="text-warm">·</span>
+    <span>Custom Facials</span><span class="text-warm">·</span>
+    <span>Chemical Peels</span><span class="text-warm">·</span>
+    <span>Dermaplane Renewal</span><span class="text-warm">·</span>
+    <span>Microcurrent Lift</span><span class="text-warm">·</span>
+    <span>Nano Infusion</span><span class="text-warm">·</span>
+    <span>Brightening</span><span class="text-warm">·</span>
+    <span>Group Bookings on The Veranda</span><span class="text-warm">·</span>
   </div>
 </section>
 
-<!-- ============== ABOUT (zig 1: image left, text right) ============== -->
-<section id="about" class="py-24 md:py-36">
-  <div class="max-w-[1400px] mx-auto px-6 md:px-10 grid grid-cols-12 gap-8 md:gap-16 items-center">
-    <!-- Image -->
-    <div class="col-span-12 md:col-span-5 reveal">
-      <div class="aspect-[4/5] w-full overflow-hidden rounded-[6px]">
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/5e5c983af5dcee6a82a3fd5f/abf248a1-b64c-4971-addd-01dcdb9528d0/AdobeStock_248974666.jpeg?format=1500w"
-          alt="Carla, lead aesthetician at Noomi Skin Care Chico, performing a custom facial"
-          class="w-full h-full object-cover" loading="lazy">
-      </div>
-    </div>
+<!-- ============== ABOUT (cream bg, image right) ============== -->
+<section id="about" class="bg-cream text-ink py-24 md:py-36">
+  <div class="max-w-[1480px] mx-auto px-6 md:px-10 grid grid-cols-12 gap-8 md:gap-16 items-center">
 
     <!-- Copy -->
-    <div class="col-span-12 md:col-span-7 md:pl-10 reveal" data-delay="1">
-      <p class="text-[12px] uppercase tracking-[0.28em] text-ink-mute mb-6">
-        <span class="inline-block w-6 h-px align-middle bg-ink-mute mr-3"></span>
+    <div class="col-span-12 md:col-span-7 reveal">
+      <p class="text-[12px] uppercase tracking-[0.28em] text-olive-deep mb-6">
+        <span class="inline-block w-6 h-px align-middle bg-olive-deep mr-3"></span>
         About
       </p>
 
-      <h2 class="font-display text-[44px] md:text-[64px] leading-[1] tracking-tightest text-ink max-w-[18ch]">
-        One aesthetician.<br>
-        <span class="display-italic font-light">A decade of</span> Chico skin.
+      <h2 class="font-display text-[44px] md:text-[80px] leading-[0.95] tracking-tightest text-ink max-w-[14ch]">
+        One aesthetician.
+        <span class="font-serif display-italic font-light text-olive-deep block mt-2">A decade of</span>
+        <span class="block">Chico skin.</span>
       </h2>
 
-      <p class="mt-8 text-[17px] text-ink-soft leading-relaxed max-w-[60ch]">
+      <p class="mt-8 text-[17px] text-ink/75 leading-relaxed max-w-[58ch]">
         Carla opened Noomi to do facials the way she always wished spas did them — slow, listening, and shaped to whatever your skin actually needs that day. No upsell scripts, no rotating providers. You'll see the same hands every visit.
       </p>
 
-      <blockquote class="mt-10 border-l-2 border-accent pl-6 max-w-[60ch]">
-        <p class="font-display display-italic text-[22px] md:text-[26px] leading-snug text-ink">
+      <blockquote class="mt-10 border-l-2 border-olive pl-6 max-w-[60ch]">
+        <p class="font-serif display-italic text-[22px] md:text-[26px] leading-snug text-ink">
           "Skin tells you what it needs. My job is to slow down enough to hear it."
         </p>
-        <footer class="mt-4 text-[12px] uppercase tracking-[0.22em] text-ink-mute">— Carla, founder</footer>
+        <footer class="mt-4 text-[12px] uppercase tracking-[0.22em] text-olive-deep">— Carla, founder</footer>
       </blockquote>
+    </div>
+
+    <!-- Image -->
+    <div class="col-span-12 md:col-span-5 reveal" data-delay="1">
+      <div class="aspect-[4/5] w-full overflow-hidden rounded-[3px]">
+        <img
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175134_f24765e4-bbad-4ea4-965b-ef9f5648de72.png"
+          alt="Carla, lead aesthetician and founder of Noomi Skin Care in Chico, California"
+          class="w-full h-full object-cover" loading="lazy">
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============== TREATMENTS (editorial list, no cards) ============== -->
-<section id="treatments" class="py-24 md:py-36 bg-cream-2 border-y border-ink/10">
-  <div class="max-w-[1400px] mx-auto px-6 md:px-10 grid grid-cols-12 gap-8 md:gap-16">
+<!-- ============== TREATMENTS (olive deep bg, editorial list) ============== -->
+<section id="treatments" class="bg-olive-deep py-24 md:py-36">
+  <div class="max-w-[1480px] mx-auto px-6 md:px-10 grid grid-cols-12 gap-8 md:gap-16">
 
     <!-- Sidebar -->
-    <aside class="col-span-12 md:col-span-4 reveal md:sticky md:top-24 self-start">
-      <p class="text-[12px] uppercase tracking-[0.28em] text-ink-mute mb-6">
-        <span class="inline-block w-6 h-px align-middle bg-ink-mute mr-3"></span>
+    <aside class="col-span-12 md:col-span-4 reveal md:sticky md:top-12 self-start">
+      <p class="text-[12px] uppercase tracking-[0.28em] text-cream/65 mb-6">
+        <span class="inline-block w-6 h-px align-middle bg-cream/65 mr-3"></span>
         Treatments
       </p>
-      <h2 class="font-display text-[44px] md:text-[60px] leading-[1] tracking-tightest text-ink">
-        Pay for what<br>
-        <span class="display-italic font-light">your skin</span><br>
+      <h2 class="font-display text-[44px] md:text-[72px] leading-[0.95] tracking-tightest text-cream">
+        Pay for what
+        <span class="font-serif display-italic font-light text-warm block mt-1">your skin</span>
         needs.
       </h2>
-      <p class="mt-6 text-[16px] text-ink-soft leading-relaxed max-w-[42ch]">
-        Every visit starts with a skin read, then we build the treatment from there. Mix and match — most clients pair a signature facial with one or two add-ons.
+      <p class="mt-6 text-[16px] text-cream/75 leading-relaxed max-w-[42ch]">
+        Every visit starts with a skin read, then we build the treatment from there. Most clients pair a signature facial with one or two add-ons.
       </p>
       <a href="https://book.gettimely.com/" target="_blank" rel="noopener"
-         class="btn-primary mt-8 inline-flex items-center gap-2 bg-ink text-cream px-6 py-3 rounded-full text-[13px] hover:bg-accent">
+         class="btn-primary mt-8 inline-flex items-center gap-2 bg-cream text-ink px-6 py-3 rounded-full text-[13px] hover:bg-warm">
         Book a treatment
         <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
@@ -335,95 +396,94 @@
 
     <!-- List -->
     <div class="col-span-12 md:col-span-8 reveal" data-delay="1">
-      <ul class="divide-y divide-ink/10 border-t border-ink/10">
-        <!-- row -->
+      <ul class="divide-y divide-cream/10 border-t border-cream/10">
         <li class="grid grid-cols-12 gap-4 py-7 md:py-9 items-baseline group">
           <div class="col-span-12 md:col-span-5">
-            <h3 class="font-display text-[26px] md:text-[32px] leading-tight text-ink group-hover:text-accent transition-colors">Signature facial</h3>
-            <p class="text-[12px] uppercase tracking-[0.22em] text-ink-mute mt-2">60 min</p>
+            <h3 class="font-display text-[26px] md:text-[34px] leading-tight text-cream group-hover:text-warm transition-colors">Signature facial</h3>
+            <p class="text-[12px] uppercase tracking-[0.22em] text-cream/55 mt-2">60 min</p>
           </div>
-          <p class="col-span-12 md:col-span-6 text-[15px] text-ink-soft leading-relaxed">A custom-blended facial built on a thorough skin read — cleanse, exfoliation, mask, massage, finishing serums tuned to the day.</p>
-          <p class="col-span-12 md:col-span-1 text-right font-display text-[18px] text-ink">$110</p>
+          <p class="col-span-12 md:col-span-6 text-[15px] text-cream/75 leading-relaxed">A custom-blended facial built on a thorough skin read — cleanse, exfoliation, mask, massage, finishing serums tuned to the day.</p>
+          <p class="col-span-12 md:col-span-1 text-right font-serif text-[18px] text-cream">$110</p>
         </li>
         <li class="grid grid-cols-12 gap-4 py-7 md:py-9 items-baseline group">
           <div class="col-span-12 md:col-span-5">
-            <h3 class="font-display text-[26px] md:text-[32px] leading-tight text-ink group-hover:text-accent transition-colors">Chemical peel</h3>
-            <p class="text-[12px] uppercase tracking-[0.22em] text-ink-mute mt-2">45 min · multi-level</p>
+            <h3 class="font-display text-[26px] md:text-[34px] leading-tight text-cream group-hover:text-warm transition-colors">Chemical peel</h3>
+            <p class="text-[12px] uppercase tracking-[0.22em] text-cream/55 mt-2">45 min · multi-level</p>
           </div>
-          <p class="col-span-12 md:col-span-6 text-[15px] text-ink-soft leading-relaxed">A graduated approach to brightening, smoothing, and clearing — strong enough to work, gentle enough to skip the downtime drama.</p>
-          <p class="col-span-12 md:col-span-1 text-right font-display text-[18px] text-ink">$135</p>
+          <p class="col-span-12 md:col-span-6 text-[15px] text-cream/75 leading-relaxed">A graduated approach to brightening, smoothing, and clearing — strong enough to work, gentle enough to skip the downtime drama.</p>
+          <p class="col-span-12 md:col-span-1 text-right font-serif text-[18px] text-cream">$135</p>
         </li>
         <li class="grid grid-cols-12 gap-4 py-7 md:py-9 items-baseline group">
           <div class="col-span-12 md:col-span-5">
-            <h3 class="font-display text-[26px] md:text-[32px] leading-tight text-ink group-hover:text-accent transition-colors">Dermaplane renewal</h3>
-            <p class="text-[12px] uppercase tracking-[0.22em] text-ink-mute mt-2">30 min · add-on</p>
+            <h3 class="font-display text-[26px] md:text-[34px] leading-tight text-cream group-hover:text-warm transition-colors">Dermaplane renewal</h3>
+            <p class="text-[12px] uppercase tracking-[0.22em] text-cream/55 mt-2">30 min · add-on</p>
           </div>
-          <p class="col-span-12 md:col-span-6 text-[15px] text-ink-soft leading-relaxed">A precision blade lifts dead surface cells and fine vellus hair. Skin feels new; makeup glides for weeks after.</p>
-          <p class="col-span-12 md:col-span-1 text-right font-display text-[18px] text-ink">+$45</p>
+          <p class="col-span-12 md:col-span-6 text-[15px] text-cream/75 leading-relaxed">A precision blade lifts dead surface cells and fine vellus hair. Skin feels new; makeup glides for weeks after.</p>
+          <p class="col-span-12 md:col-span-1 text-right font-serif text-[18px] text-cream">+$45</p>
         </li>
         <li class="grid grid-cols-12 gap-4 py-7 md:py-9 items-baseline group">
           <div class="col-span-12 md:col-span-5">
-            <h3 class="font-display text-[26px] md:text-[32px] leading-tight text-ink group-hover:text-accent transition-colors">Microcurrent lift</h3>
-            <p class="text-[12px] uppercase tracking-[0.22em] text-ink-mute mt-2">30 min · add-on</p>
+            <h3 class="font-display text-[26px] md:text-[34px] leading-tight text-cream group-hover:text-warm transition-colors">Microcurrent lift</h3>
+            <p class="text-[12px] uppercase tracking-[0.22em] text-cream/55 mt-2">30 min · add-on</p>
           </div>
-          <p class="col-span-12 md:col-span-6 text-[15px] text-ink-soft leading-relaxed">A workout for the underlying facial muscles — visible lift along the jaw, brow, and cheekbones with no recovery time.</p>
-          <p class="col-span-12 md:col-span-1 text-right font-display text-[18px] text-ink">+$60</p>
+          <p class="col-span-12 md:col-span-6 text-[15px] text-cream/75 leading-relaxed">A workout for the underlying facial muscles — visible lift along the jaw, brow, and cheekbones with no recovery time.</p>
+          <p class="col-span-12 md:col-span-1 text-right font-serif text-[18px] text-cream">+$60</p>
         </li>
         <li class="grid grid-cols-12 gap-4 py-7 md:py-9 items-baseline group">
           <div class="col-span-12 md:col-span-5">
-            <h3 class="font-display text-[26px] md:text-[32px] leading-tight text-ink group-hover:text-accent transition-colors">Nano infusion</h3>
-            <p class="text-[12px] uppercase tracking-[0.22em] text-ink-mute mt-2">25 min · add-on</p>
+            <h3 class="font-display text-[26px] md:text-[34px] leading-tight text-cream group-hover:text-warm transition-colors">Nano infusion</h3>
+            <p class="text-[12px] uppercase tracking-[0.22em] text-cream/55 mt-2">25 min · add-on</p>
           </div>
-          <p class="col-span-12 md:col-span-6 text-[15px] text-ink-soft leading-relaxed">Microscopic channeling drives serums deeper into the skin without breaking the barrier — a lighter cousin to traditional microneedling.</p>
-          <p class="col-span-12 md:col-span-1 text-right font-display text-[18px] text-ink">+$50</p>
+          <p class="col-span-12 md:col-span-6 text-[15px] text-cream/75 leading-relaxed">Microscopic channeling drives serums deeper into the skin without breaking the barrier — a lighter cousin to traditional microneedling.</p>
+          <p class="col-span-12 md:col-span-1 text-right font-serif text-[18px] text-cream">+$50</p>
         </li>
         <li class="grid grid-cols-12 gap-4 py-7 md:py-9 items-baseline group">
           <div class="col-span-12 md:col-span-5">
-            <h3 class="font-display text-[26px] md:text-[32px] leading-tight text-ink group-hover:text-accent transition-colors">Brightening treatment</h3>
-            <p class="text-[12px] uppercase tracking-[0.22em] text-ink-mute mt-2">20 min · add-on</p>
+            <h3 class="font-display text-[26px] md:text-[34px] leading-tight text-cream group-hover:text-warm transition-colors">Brightening treatment</h3>
+            <p class="text-[12px] uppercase tracking-[0.22em] text-cream/55 mt-2">20 min · add-on</p>
           </div>
-          <p class="col-span-12 md:col-span-6 text-[15px] text-ink-soft leading-relaxed">A targeted layer for sun-spotted, post-summer Chico skin — vitamin C, mandelic acid, and time on the LED.</p>
-          <p class="col-span-12 md:col-span-1 text-right font-display text-[18px] text-ink">+$35</p>
+          <p class="col-span-12 md:col-span-6 text-[15px] text-cream/75 leading-relaxed">A targeted layer for sun-spotted, post-summer Chico skin — vitamin C, mandelic acid, and time on the LED.</p>
+          <p class="col-span-12 md:col-span-1 text-right font-serif text-[18px] text-cream">+$35</p>
         </li>
       </ul>
 
-      <p class="mt-10 text-[13px] text-ink-mute max-w-[60ch]">
+      <p class="mt-10 text-[13px] text-cream/55 max-w-[60ch]">
         Pricing reflects starting rates. Final treatment is built with you at consultation. Group rates available on The Veranda.
       </p>
     </div>
   </div>
 </section>
 
-<!-- ============== THE VERANDA (full-bleed editorial) ============== -->
+<!-- ============== THE VERANDA (full-bleed image hero) ============== -->
 <section id="veranda" class="relative">
-  <div class="relative h-[80vh] min-h-[640px] w-full overflow-hidden">
+  <div class="relative h-[88vh] min-h-[680px] w-full overflow-hidden">
     <img
-      src="https://images.squarespace-cdn.com/content/v1/5e5c983af5dcee6a82a3fd5f/ce7ee085-9b14-4c63-a9c5-6b3f2b665a9b/the+veranda+at+noomi+skin+care?format=2500w"
-      alt="The Veranda — Noomi Skin Care's private outdoor patio in Chico, CA"
+      src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175127_044b3ed4-c88f-4efb-b545-47aa9cf697fd.png"
+      alt="The Veranda — Noomi Skin Care's private outdoor patio"
       class="absolute inset-0 w-full h-full object-cover"
       loading="lazy">
-    <div class="absolute inset-0 veranda-fade"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(31,27,20,0) 30%, rgba(31,27,20,0.7) 100%);"></div>
 
     <div class="absolute inset-0">
-      <div class="max-w-[1400px] mx-auto px-6 md:px-10 h-full flex items-end pb-16 md:pb-20">
-        <div class="reveal max-w-[640px]">
+      <div class="max-w-[1480px] mx-auto px-6 md:px-10 h-full flex items-end pb-16 md:pb-20">
+        <div class="reveal max-w-[680px]">
           <p class="text-[12px] uppercase tracking-[0.28em] text-cream/70 mb-5">
             <span class="inline-block w-6 h-px align-middle bg-cream/70 mr-3"></span>
             The Veranda
           </p>
-          <h2 class="font-display text-[44px] md:text-[68px] leading-[1] tracking-tightest text-cream">
-            Bring a friend.<br>
-            <span class="display-italic font-light">Bring the bridal party.</span>
+          <h2 class="font-display text-[44px] md:text-[80px] leading-[0.95] tracking-tightest text-cream">
+            Bring a friend.
+            <span class="font-serif display-italic font-light block mt-1 text-warm">Bring the bridal party.</span>
           </h2>
           <p class="mt-7 text-[17px] text-cream/85 max-w-[52ch] leading-relaxed">
             Our private outdoor patio is the only one of its kind in Chico. Sip something cold, swap your day for a slower one, and take turns getting glow-ups. Birthdays, brides, best friends on a Saturday — the regulars know.
           </p>
           <div class="mt-10 flex flex-wrap items-center gap-4">
-            <a href="#visit" class="btn-primary inline-flex items-center gap-2 bg-cream text-ink px-7 py-4 rounded-full text-[14px] hover:bg-accent hover:text-cream">
+            <a href="#visit" class="btn-primary inline-flex items-center gap-2 bg-cream text-ink px-7 py-4 rounded-full text-[14px] hover:bg-warm">
               Plan a Veranda visit
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </a>
-            <span class="text-[12px] uppercase tracking-[0.22em] text-cream/70">Groups of 2+</span>
+            <span class="text-[12px] uppercase tracking-[0.22em] text-cream/65">Groups of 2+</span>
           </div>
         </div>
       </div>
@@ -431,42 +491,42 @@
   </div>
 </section>
 
-<!-- ============== TESTIMONIALS (editorial pull-quotes, no cards) ============== -->
-<section id="testimonials" class="py-24 md:py-36">
-  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+<!-- ============== TESTIMONIALS (cream bg) ============== -->
+<section id="testimonials" class="bg-cream text-ink py-24 md:py-36">
+  <div class="max-w-[1480px] mx-auto px-6 md:px-10">
     <div class="grid grid-cols-12 gap-8 md:gap-16 items-end mb-14 md:mb-20">
       <div class="col-span-12 md:col-span-7 reveal">
-        <p class="text-[12px] uppercase tracking-[0.28em] text-ink-mute mb-6">
-          <span class="inline-block w-6 h-px align-middle bg-ink-mute mr-3"></span>
+        <p class="text-[12px] uppercase tracking-[0.28em] text-olive-deep mb-6">
+          <span class="inline-block w-6 h-px align-middle bg-olive-deep mr-3"></span>
           Reviews
         </p>
-        <h2 class="font-display text-[44px] md:text-[64px] leading-[1] tracking-tightest text-ink max-w-[16ch]">
-          Five-star repeat clients,<br>
-          <span class="display-italic font-light">earned the slow way.</span>
+        <h2 class="font-display text-[44px] md:text-[72px] leading-[0.95] tracking-tightest text-ink max-w-[18ch]">
+          Five-star repeat clients,
+          <span class="font-serif display-italic font-light text-olive-deep block mt-1">earned the slow way.</span>
         </h2>
       </div>
       <div class="col-span-12 md:col-span-5 reveal" data-delay="1">
-        <a href="https://www.google.com/search?q=noomi+skin+care+chico" target="_blank" rel="noopener" class="ed-link text-[14px] text-ink-soft hover:text-accent">Read all reviews on Google →</a>
+        <a href="https://www.google.com/search?q=noomi+skin+care+chico" target="_blank" rel="noopener" class="ed-link text-[14px] text-ink/65 hover:text-olive-deep">Read all reviews on Google →</a>
       </div>
     </div>
 
     <div class="grid grid-cols-12 gap-8 md:gap-16">
       <figure class="col-span-12 md:col-span-7 md:col-start-1 reveal">
-        <p class="font-display display-italic text-[28px] md:text-[40px] leading-[1.15] text-ink">
+        <p class="font-serif display-italic text-[28px] md:text-[42px] leading-[1.15] text-ink">
           "I've gone to Carla for years. She is amazing — so kind, and honestly the best at her job."
         </p>
-        <figcaption class="mt-6 flex items-center gap-3 text-[12px] uppercase tracking-[0.22em] text-ink-mute">
-          <span class="w-8 h-px bg-ink-mute"></span>
+        <figcaption class="mt-6 flex items-center gap-3 text-[12px] uppercase tracking-[0.22em] text-olive-deep">
+          <span class="w-8 h-px bg-olive-deep"></span>
           Jessica B. · Chico
         </figcaption>
       </figure>
 
       <figure class="col-span-12 md:col-span-7 md:col-start-6 mt-8 md:mt-24 reveal" data-delay="1">
-        <p class="font-display display-italic text-[28px] md:text-[40px] leading-[1.15] text-ink">
+        <p class="font-serif display-italic text-[28px] md:text-[42px] leading-[1.15] text-ink">
           "I love Noomi Skincare. You feel pampered the moment you walk in the door."
         </p>
-        <figcaption class="mt-6 flex items-center gap-3 text-[12px] uppercase tracking-[0.22em] text-ink-mute">
-          <span class="w-8 h-px bg-ink-mute"></span>
+        <figcaption class="mt-6 flex items-center gap-3 text-[12px] uppercase tracking-[0.22em] text-olive-deep">
+          <span class="w-8 h-px bg-olive-deep"></span>
           Dnaya R. · Chico
         </figcaption>
       </figure>
@@ -474,29 +534,29 @@
   </div>
 </section>
 
-<!-- ============== PRODUCTS / TRUST ============== -->
-<section class="py-20 md:py-28 bg-cream-2 border-y border-ink/10">
-  <div class="max-w-[1400px] mx-auto px-6 md:px-10 grid grid-cols-12 gap-8 md:gap-16 items-center">
+<!-- ============== PRODUCTS / SHELF ============== -->
+<section class="bg-cream-2 text-ink py-20 md:py-28 border-y border-ink/10">
+  <div class="max-w-[1480px] mx-auto px-6 md:px-10 grid grid-cols-12 gap-8 md:gap-16 items-center">
     <div class="col-span-12 md:col-span-7 reveal">
-      <p class="text-[12px] uppercase tracking-[0.28em] text-ink-mute mb-5">
-        <span class="inline-block w-6 h-px align-middle bg-ink-mute mr-3"></span>
+      <p class="text-[12px] uppercase tracking-[0.28em] text-olive-deep mb-5">
+        <span class="inline-block w-6 h-px align-middle bg-olive-deep mr-3"></span>
         The shelf
       </p>
-      <h2 class="font-display text-[36px] md:text-[52px] leading-[1.05] tracking-tightest text-ink max-w-[20ch]">
-        The same lines we use<br>
-        <span class="display-italic font-light">in the treatment room.</span>
+      <h2 class="font-display text-[36px] md:text-[60px] leading-[1.0] tracking-tightest text-ink max-w-[20ch]">
+        The same lines we use
+        <span class="font-serif display-italic font-light text-olive-deep block mt-1">in the treatment room.</span>
       </h2>
-      <p class="mt-6 text-[16px] text-ink-soft leading-relaxed max-w-[58ch]">
+      <p class="mt-6 text-[16px] text-ink/75 leading-relaxed max-w-[58ch]">
         We carry only what we'd put on our own skin — <strong class="text-ink font-medium">PCA Skin</strong>, <strong class="text-ink font-medium">Cosmedix</strong>, and <strong class="text-ink font-medium">Sorella Apothecary</strong>. Same-day pickup. Curbside if you're in a hurry.
       </p>
-      <a href="#" class="ed-link mt-8 inline-block text-[14px] text-ink hover:text-accent">Shop the shelf →</a>
+      <a href="#" class="ed-link mt-8 inline-block text-[14px] text-ink hover:text-olive-deep">Shop the shelf →</a>
     </div>
 
     <div class="col-span-12 md:col-span-5 reveal" data-delay="1">
-      <div class="aspect-[4/3] w-full overflow-hidden rounded-[6px]">
+      <div class="aspect-[4/3] w-full overflow-hidden rounded-[3px]">
         <img
-          src="https://images.squarespace-cdn.com/content/v1/5e5c983af5dcee6a82a3fd5f/6275dd1f-309e-4af6-ba33-7f7bd3e2e845/Screen+Shot+2021-04-21+at+12.17.06+PM.jpg?format=1500w"
-          alt="PCA Skin, Cosmedix, and Sorella Apothecary on display at Noomi Skin Care Chico"
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_175039_536b4582-bb51-41dc-85ef-10f59e7f47f7.png"
+          alt="Custom skincare formulations laid out on the studio counter at Noomi Skin Care"
           class="w-full h-full object-cover" loading="lazy">
       </div>
     </div>
@@ -504,9 +564,11 @@
 </section>
 
 <!-- ============== FINAL CTA / VISIT ============== -->
-<section id="visit" class="relative py-28 md:py-40 bg-ink text-cream overflow-hidden">
-  <!-- Decorative type echo -->
-  <p aria-hidden="true" class="font-display absolute -top-6 md:-top-10 left-0 right-0 text-center text-[120px] md:text-[220px] leading-none tracking-tightest text-cream/[0.04] select-none whitespace-nowrap">noomi noomi noomi</p>
+<section id="visit" class="relative py-28 md:py-40 bg-olive text-cream overflow-hidden">
+
+  <p aria-hidden="true" class="font-display absolute -top-6 md:-top-12 left-0 right-0 text-center text-[120px] md:text-[260px] leading-none tracking-tightest text-cream/[0.06] select-none whitespace-nowrap font-black">
+    noomi noomi noomi
+  </p>
 
   <div class="max-w-[1100px] mx-auto px-6 md:px-10 relative">
     <div class="grid grid-cols-12 gap-8 md:gap-12">
@@ -515,33 +577,34 @@
           <span class="inline-block w-6 h-px align-middle bg-cream/60 mr-3"></span>
           Visit
         </p>
-        <h2 class="font-display text-[48px] md:text-[80px] leading-[0.95] tracking-tightest">
-          Your best skin<br>
-          <span class="display-italic font-light text-accent-2">is sixty minutes</span> away.
+        <h2 class="font-display text-[48px] md:text-[88px] leading-[0.92] tracking-tightest">
+          Your best skin
+          <span class="font-serif display-italic font-light text-warm block mt-1">is sixty minutes</span>
+          away.
         </h2>
-        <p class="mt-8 text-[17px] text-cream/75 max-w-[52ch] leading-relaxed">
+        <p class="mt-8 text-[17px] text-cream/80 max-w-[52ch] leading-relaxed">
           Online booking is open 24/7 — most weeks have same-week availability. Prefer to talk it through? Call Carla directly during business hours.
         </p>
         <div class="mt-10 flex flex-wrap items-center gap-4">
           <a href="https://book.gettimely.com/" target="_blank" rel="noopener"
-             class="btn-primary inline-flex items-center gap-2 bg-cream text-ink px-7 py-4 rounded-full text-[14px] hover:bg-accent hover:text-cream">
+             class="btn-primary inline-flex items-center gap-2 bg-cream text-ink px-7 py-4 rounded-full text-[14px] hover:bg-warm">
             Book online
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
-          <a href="tel:+15305140632" class="btn-ghost inline-flex items-center gap-2 px-2 py-4 text-[14px] text-cream hover:text-accent-2 border-b border-cream/30 hover:border-accent-2">
+          <a href="tel:+15305140632" class="btn-ghost inline-flex items-center gap-2 px-2 py-4 text-[14px] text-cream hover:text-warm border-b border-cream/30 hover:border-warm">
             (530) 514-0632
           </a>
         </div>
       </div>
 
-      <aside class="col-span-12 md:col-span-5 md:pl-10 md:border-l border-cream/10 reveal" data-delay="1">
+      <aside class="col-span-12 md:col-span-5 md:pl-10 md:border-l border-cream/15 reveal" data-delay="1">
         <dl class="space-y-7 text-[14px]">
           <div>
-            <dt class="text-[11px] uppercase tracking-[0.22em] text-cream/50">Address</dt>
-            <dd class="mt-2 font-display text-[20px] leading-snug">1731 Esplanade, Suite 7<br>Chico, CA 95926</dd>
+            <dt class="text-[11px] uppercase tracking-[0.22em] text-cream/55">Address</dt>
+            <dd class="mt-2 font-serif text-[20px] leading-snug">1731 Esplanade, Suite 7<br>Chico, CA 95926</dd>
           </div>
           <div>
-            <dt class="text-[11px] uppercase tracking-[0.22em] text-cream/50">Hours</dt>
+            <dt class="text-[11px] uppercase tracking-[0.22em] text-cream/55">Hours</dt>
             <dd class="mt-2 leading-relaxed text-cream/85">
               Tue – Fri · 9am – 5pm<br>
               Sat · 9am – 3pm<br>
@@ -549,10 +612,10 @@
             </dd>
           </div>
           <div>
-            <dt class="text-[11px] uppercase tracking-[0.22em] text-cream/50">Follow</dt>
+            <dt class="text-[11px] uppercase tracking-[0.22em] text-cream/55">Follow</dt>
             <dd class="mt-2 flex items-center gap-5">
-              <a href="https://www.instagram.com/noomidayspa/" target="_blank" rel="noopener" class="ed-link hover:text-accent-2">Instagram</a>
-              <a href="https://www.facebook.com/Noomi-Skin-Care-101336751505741/" target="_blank" rel="noopener" class="ed-link hover:text-accent-2">Facebook</a>
+              <a href="https://www.instagram.com/noomidayspa/" target="_blank" rel="noopener" class="ed-link hover:text-warm">Instagram</a>
+              <a href="https://www.facebook.com/Noomi-Skin-Care-101336751505741/" target="_blank" rel="noopener" class="ed-link hover:text-warm">Facebook</a>
             </dd>
           </div>
         </dl>
@@ -562,8 +625,8 @@
 </section>
 
 <!-- ============== FOOTER ============== -->
-<footer class="py-10 bg-ink text-cream/60 border-t border-cream/10">
-  <div class="max-w-[1400px] mx-auto px-6 md:px-10 flex flex-col md:flex-row md:items-center justify-between gap-4 text-[12px]">
+<footer class="py-10 bg-olive-dark text-cream/55 border-t border-cream/10">
+  <div class="max-w-[1480px] mx-auto px-6 md:px-10 flex flex-col md:flex-row md:items-center justify-between gap-4 text-[12px]">
     <p>© <span id="yr">2026</span> Noomi Skin Care · Chico, California</p>
     <p class="text-cream/40">A boutique facial studio on Esplanade.</p>
   </div>
@@ -572,7 +635,7 @@
 </main>
 
 <script>
-  // Intersection-observer reveal
+  // Reveal on scroll
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
