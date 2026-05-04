@@ -344,33 +344,16 @@
       </div>
     </div>
 
-    <!-- CENTER: portrait with scan boxes -->
+    <!-- CENTER: hero video (scan boxes are baked into the clip) -->
     <div class="col-span-12 md:col-span-5 hero-fade my-8 md:my-0" style="--delay:300ms">
       <div class="relative aspect-[4/5] w-full overflow-hidden rounded-[3px] bg-olive-deep">
-        <img
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_36AhAwWq6jjbVHnv1V2efXD1FhO/hf_20260503_183116_58caf828-84dc-4254-8de9-3985ed8c9ef2.png"
-          alt="A Noomi Skin Care client photographed in soft natural light against a sage-olive plaster wall in Chico, CA"
-          class="absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high">
-
-        <!-- Scan boxes (% positions tuned to face landmarks) -->
-        <div class="scan-box" style="--x:54%; --y:24%; --d:1500ms" aria-hidden="true">
-          <svg viewBox="0 0 80 80" fill="none">
-            <path d="M0 18V0H18M62 0H80V18M80 62V80H62M18 80H0V62" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span class="label">Hydration</span>
-        </div>
-        <div class="scan-box" style="--x:31%; --y:42%; --d:1750ms" aria-hidden="true">
-          <svg viewBox="0 0 80 80" fill="none">
-            <path d="M0 18V0H18M62 0H80V18M80 62V80H62M18 80H0V62" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span class="label">Brightening</span>
-        </div>
-        <div class="scan-box" style="--x:60%; --y:58%; --d:2000ms" aria-hidden="true">
-          <svg viewBox="0 0 80 80" fill="none">
-            <path d="M0 18V0H18M62 0H80V18M80 62V80H62M18 80H0V62" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span class="label">Texture</span>
-        </div>
+        <video
+          autoplay muted loop playsinline preload="metadata"
+          poster="img/hero-video-poster.jpg"
+          aria-label="A Noomi Skin Care client receiving a custom skin read — hydration, brightening, and texture areas are highlighted"
+          class="absolute inset-0 w-full h-full object-cover">
+          <source src="img/hero-video.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
 
