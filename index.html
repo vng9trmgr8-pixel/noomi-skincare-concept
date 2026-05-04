@@ -66,17 +66,40 @@
   .font-serif   { font-family: "Sofia Pro", "Sofia Sans", system-ui, sans-serif; font-weight: 300; font-style: italic; letter-spacing: -0.01em; }
   .display-italic { font-style: italic; font-weight: 300; }
 
-  /* Hero H1 — Geist Black, sized for left column */
+  /* Hero H1 — Geist Black, MASSIVE editorial mega-type behind the portrait.
+     Color is a slightly lighter olive than the section bg so the type sits
+     behind the model without competing with the cream foreground text. */
   .mega-type {
     font-family: "Geist", system-ui, sans-serif;
     font-weight: 900;
-    line-height: 0.86;
-    letter-spacing: -0.05em;
-    color: #F4EFE0;
+    line-height: 0.84;
+    letter-spacing: -0.055em;
+    color: #82876A;
     user-select: none;
     text-transform: uppercase;
-    /* Subtle drop shadow for legibility over the live video background */
-    text-shadow: 0 2px 18px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.25);
+  }
+
+  /* Side-profile portrait sits flush right, ~62% of the canvas width.
+     Soft left-edge mask feathers the photo into the section bg so there is
+     no hard rectangle edge — the mega-type appears continuous behind it. */
+  .hero-portrait {
+    width: 62%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 65% center;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 100%);
+            mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 100%);
+  }
+  @media (max-width: 767px) {
+    .hero-portrait {
+      width: 100%;
+      height: 60%;
+      top: auto;
+      bottom: 0;
+      object-position: center 30%;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 100%);
+              mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 100%);
+    }
   }
   .mega-letter {
     display: inline-block;
@@ -248,23 +271,29 @@
 
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-cream focus:text-ink focus:px-4 focus:py-2 focus:rounded-full">Skip to content</a>
 
-<!-- ============== HERO (full-bleed 16:9 video bg, content overlay) ============== -->
-<section class="relative w-full overflow-hidden min-h-[100dvh] md:min-h-0 md:aspect-video" style="background-color:#5A6452">
+<!-- ============== HERO (mega-type behind side-profile portrait) ============== -->
+<section class="hero-editorial relative w-full overflow-hidden min-h-[100dvh]" style="background-color:#4F5436">
 
-  <!-- ===== Full-bleed video background ===== -->
-  <video
-    autoplay muted loop playsinline preload="metadata"
-    poster="img/hero-video-poster.jpg"
-    aria-hidden="true"
-    class="absolute inset-0 w-full h-full object-cover z-0">
-    <source src="img/hero-video.mp4" type="video/mp4">
-  </video>
+  <!-- ===== Side-profile portrait (right side, full-bleed, left edge feathers into bg) ===== -->
+  <img
+    src="img/profile.jpg"
+    alt="A Noomi Skin Care client in a cream silk headband and blouse, eyes closed in soft afternoon sunlight"
+    class="hero-portrait absolute top-0 right-0 h-full z-[2] hero-fade"
+    style="--delay:600ms"
+    loading="eager" fetchpriority="high">
 
-  <!-- ===== Soft edge vignette (darkens left+right edges for text contrast,
-       leaves the model in the center untouched) ===== -->
-  <div class="absolute inset-0 z-[1] pointer-events-none" style="background:
-    linear-gradient(90deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 78%, rgba(0,0,0,0.4) 100%),
-    linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 14%, rgba(0,0,0,0) 84%, rgba(0,0,0,0.45) 100%);"></div>
+  <!-- ===== Brush stroke decoration on the right ===== -->
+  <svg class="brush-stroke absolute right-[2%] md:right-[6%] bottom-[14%] md:bottom-[18%] w-[42%] md:w-[28%] z-[3] pointer-events-none hero-fade" style="--delay:1100ms" viewBox="0 0 600 480" fill="none" aria-hidden="true">
+    <path d="M40 380 Q60 240 180 160 Q300 80 470 110" stroke="#F4EFE0" stroke-width="22" stroke-linecap="round" stroke-opacity="0.55" fill="none"/>
+    <path d="M70 380 Q90 270 200 200 Q310 130 450 160" stroke="#F4EFE0" stroke-width="14" stroke-linecap="round" stroke-opacity="0.4" fill="none"/>
+    <path d="M105 380 Q125 295 220 240 Q315 180 430 200" stroke="#F4EFE0" stroke-width="9" stroke-linecap="round" stroke-opacity="0.3" fill="none"/>
+    <path d="M40 380 Q60 240 180 160 Q300 80 470 110" stroke="#F4EFE0" stroke-width="2" stroke-linecap="round" stroke-opacity="0.7" stroke-dasharray="2 8" fill="none"/>
+  </svg>
+
+  <!-- ===== Subtle inner shadow / film vignette (sits above the portrait
+       to deepen the corners) ===== -->
+  <div class="absolute inset-0 z-[4] pointer-events-none" style="background:
+    radial-gradient(ellipse 110% 90% at 50% 50%, transparent 55%, rgba(0,0,0,0.28) 100%);"></div>
 
   <!-- ===== NAV ===== -->
   <header class="relative z-30 hero-fade" style="--delay:200ms">
@@ -334,75 +363,40 @@
     </div>
   </div>
 
-  <!-- ===== Content overlay (sits on top of the video bg) ===== -->
-  <div class="absolute inset-0 z-10">
-   <div class="max-w-[1480px] mx-auto h-full px-6 md:px-10 pt-28 md:pt-24 lg:pt-28 pb-12 md:pb-10 grid grid-cols-12 gap-x-6 md:gap-x-8 lg:gap-x-12 items-center">
-
-    <!-- LEFT: H1 + body + CTA -->
-    <div class="col-span-12 md:col-span-4 flex flex-col">
-      <h1 class="mega-type text-[12vw] sm:text-[9vw] md:text-[4.4vw] lg:text-[4vw]" aria-label="Skin Worth Showing">
-        <span class="block">Skin</span>
-        <span class="block font-serif italic font-light text-warm">Worth</span>
-        <span class="block">Showing</span>
+  <!-- ===== Mega-type stack (sits BEHIND the portrait via z-index) ===== -->
+  <div class="absolute inset-0 z-[1] pointer-events-none">
+    <div class="max-w-[1700px] mx-auto h-full px-6 md:px-10 flex items-center">
+      <h1 class="mega-type leading-[0.84] tracking-tightest text-[18vw] md:text-[18vw] lg:text-[17vw]" aria-label="Skin Worth Showing">
+        <span class="block">SKIN</span>
+        <span class="block">WORTH</span>
+        <span class="block">SHOWING</span>
       </h1>
-
-      <div class="hero-fade mt-5 md:mt-6" style="--delay:1500ms">
-        <p class="text-[14px] md:text-[15px] text-cream/90 leading-relaxed max-w-[32ch] [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]">
-          Where modern skincare meets the art of slow care. Ten years of trained hands on Esplanade.
-        </p>
-      </div>
-
-      <div class="hero-fade mt-5 md:mt-6 flex flex-wrap items-center gap-4" style="--delay:1700ms">
-        <a href="https://book.gettimely.com/" target="_blank" rel="noopener"
-           class="btn-primary inline-flex items-center gap-2 bg-cream text-ink px-6 py-3 rounded-full text-[13px] hover:bg-warm">
-          Book a facial
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#treatments" class="btn-ghost inline-flex items-center gap-2 px-2 py-3 text-[13px] text-cream hover:text-warm border-b border-cream/30 hover:border-warm">See treatments</a>
-      </div>
     </div>
-
-    <!-- CENTER: empty (model in the video shows through) -->
-    <div class="hidden md:block md:col-span-4"></div>
-
-    <!-- RIGHT: stats column -->
-    <div class="col-span-12 md:col-span-4 flex md:flex-col gap-6 md:gap-9 mt-8 md:mt-0">
-      <!-- Stat 1 -->
-      <div class="hero-fade flex items-start gap-4" style="--delay:1300ms">
-        <span class="grid place-items-center w-10 h-10 rounded-full bg-olive-dark/70 border border-cream/15 backdrop-blur-sm shrink-0">
-          <svg class="w-4 h-4 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        </span>
-        <div>
-          <p class="font-display text-[32px] md:text-[38px] leading-none text-cream [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"><span class="counter" data-target="10" data-suffix="+" data-delay="1400">0</span></p>
-          <p class="text-[11px] uppercase tracking-[0.22em] text-cream/80 mt-2 [text-shadow:0_1px_2px_rgba(0,0,0,0.4)]">Years with Carla</p>
-        </div>
-      </div>
-
-      <!-- Stat 2 -->
-      <div class="hero-fade flex items-start gap-4" style="--delay:1500ms">
-        <span class="grid place-items-center w-10 h-10 rounded-full bg-olive-dark/70 border border-cream/15 backdrop-blur-sm shrink-0">
-          <svg class="w-4 h-4 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="6" r="3"/><circle cx="6" cy="16" r="3"/><circle cx="18" cy="16" r="3"/><path d="M12 9v3M9 14l3-2 3 2"/></svg>
-        </span>
-        <div>
-          <p class="font-display text-[32px] md:text-[38px] leading-none text-cream [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"><span class="counter" data-target="6" data-delay="1600">0</span></p>
-          <p class="text-[11px] uppercase tracking-[0.22em] text-cream/80 mt-2 [text-shadow:0_1px_2px_rgba(0,0,0,0.4)]">Custom treatments</p>
-        </div>
-      </div>
-
-      <!-- Stat 3 -->
-      <div class="hero-fade flex items-start gap-4" style="--delay:1700ms">
-        <span class="grid place-items-center w-10 h-10 rounded-full bg-olive-dark/70 border border-cream/15 backdrop-blur-sm shrink-0">
-          <svg class="w-4 h-4 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.5 5.5 6 .5-4.5 4 1.4 6-5.4-3.2L6.6 19l1.4-6L3.5 9l6-.5L12 3z"/></svg>
-        </span>
-        <div>
-          <p class="font-display text-[32px] md:text-[38px] leading-none text-cream [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"><span class="counter" data-target="5" data-decimals="1" data-delay="1800">0.0</span></p>
-          <p class="text-[11px] uppercase tracking-[0.22em] text-cream/80 mt-2 [text-shadow:0_1px_2px_rgba(0,0,0,0.4)]">Google rating</p>
-        </div>
-      </div>
-    </div>
-   </div>
   </div>
-</section>
+
+  <!-- ===== Bottom-left body text + CTA ===== -->
+  <div class="absolute z-[5] left-6 md:left-10 bottom-10 md:bottom-12 max-w-[420px] hero-fade" style="--delay:1500ms">
+    <p class="text-[12px] uppercase tracking-[0.28em] text-cream/65 mb-3">
+      <span class="inline-block w-6 h-px align-middle bg-cream/65 mr-3"></span>
+      Boutique facial studio · Esplanade, Chico
+    </p>
+    <p class="text-[14px] md:text-[15px] text-cream/90 leading-relaxed max-w-[36ch] [text-shadow:0_1px_2px_rgba(0,0,0,0.4)]">
+      Where modern skincare meets the art of slow care. Ten years of trained hands on Esplanade.
+    </p>
+    <div class="mt-6 flex flex-wrap items-center gap-4">
+      <a href="https://book.gettimely.com/" target="_blank" rel="noopener"
+         class="btn-primary inline-flex items-center gap-2 bg-cream text-ink px-6 py-3 rounded-full text-[13px] hover:bg-warm">
+        Book a facial
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#treatments" class="btn-ghost inline-flex items-center gap-2 px-2 py-3 text-[13px] text-cream hover:text-warm border-b border-cream/30 hover:border-warm">See treatments</a>
+    </div>
+  </div>
+
+  <!-- ===== Bottom-right copyright stamp ===== -->
+  <div class="absolute z-[5] right-6 md:right-10 bottom-10 md:bottom-12 hero-fade" style="--delay:1700ms">
+    <p class="font-serif text-[12px] tracking-normal text-cream/55"><span class="js-year">2026</span><sup class="text-[8px]">©</sup> Noomi</p>
+  </div>
 
 <main id="main" class="relative z-10">
 
@@ -847,7 +841,8 @@
     }));
   }
 
-  document.getElementById('yr').textContent = new Date().getFullYear();
+  const _yr = new Date().getFullYear();
+  document.querySelectorAll('#yr, .js-year').forEach(el => { el.textContent = _yr; });
 </script>
 </body>
 </html>
