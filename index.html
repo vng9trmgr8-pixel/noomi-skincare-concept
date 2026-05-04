@@ -249,7 +249,7 @@
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-cream focus:text-ink focus:px-4 focus:py-2 focus:rounded-full">Skip to content</a>
 
 <!-- ============== HERO (full-bleed 16:9 video bg, content overlay) ============== -->
-<section class="relative min-h-[100dvh] overflow-hidden" style="background-color:#5A6452">
+<section class="relative w-full overflow-hidden min-h-[100dvh] md:min-h-0 md:aspect-video" style="background-color:#5A6452">
 
   <!-- ===== Full-bleed video background ===== -->
   <video
@@ -335,44 +335,45 @@
   </div>
 
   <!-- ===== Content overlay (sits on top of the video bg) ===== -->
-  <div class="relative z-10 max-w-[1480px] mx-auto px-6 md:px-10 pt-36 md:pt-40 lg:pt-44 pb-32 md:pb-32 grid grid-cols-12 gap-x-6 md:gap-x-8 lg:gap-x-12 items-center min-h-[calc(100dvh-160px)]">
+  <div class="absolute inset-0 z-10">
+   <div class="max-w-[1480px] mx-auto h-full px-6 md:px-10 pt-28 md:pt-24 lg:pt-28 pb-12 md:pb-10 grid grid-cols-12 gap-x-6 md:gap-x-8 lg:gap-x-12 items-center">
 
     <!-- LEFT: H1 + body + CTA -->
-    <div class="col-span-12 md:col-span-5 flex flex-col">
-      <h1 class="mega-type text-[12vw] sm:text-[10vw] md:text-[5.2vw] lg:text-[4.7vw]" aria-label="Skin Worth Showing">
+    <div class="col-span-12 md:col-span-4 flex flex-col">
+      <h1 class="mega-type text-[12vw] sm:text-[9vw] md:text-[4.4vw] lg:text-[4vw]" aria-label="Skin Worth Showing">
         <span class="block">Skin</span>
         <span class="block font-serif italic font-light text-warm">Worth</span>
         <span class="block">Showing</span>
       </h1>
 
-      <div class="hero-fade mt-7 md:mt-9" style="--delay:1500ms">
-        <p class="text-[15px] md:text-[16px] text-cream/90 leading-relaxed max-w-[34ch] [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]">
-          Where modern skincare meets the art of slow care. Ten years of trained hands on Esplanade — natural-first, medical-grade when it matters.
+      <div class="hero-fade mt-5 md:mt-6" style="--delay:1500ms">
+        <p class="text-[14px] md:text-[15px] text-cream/90 leading-relaxed max-w-[32ch] [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]">
+          Where modern skincare meets the art of slow care. Ten years of trained hands on Esplanade.
         </p>
       </div>
 
-      <div class="hero-fade mt-7 flex flex-wrap items-center gap-4" style="--delay:1700ms">
+      <div class="hero-fade mt-5 md:mt-6 flex flex-wrap items-center gap-4" style="--delay:1700ms">
         <a href="https://book.gettimely.com/" target="_blank" rel="noopener"
-           class="btn-primary inline-flex items-center gap-2 bg-cream text-ink px-7 py-4 rounded-full text-[14px] hover:bg-warm">
+           class="btn-primary inline-flex items-center gap-2 bg-cream text-ink px-6 py-3 rounded-full text-[13px] hover:bg-warm">
           Book a facial
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
-        <a href="#treatments" class="btn-ghost inline-flex items-center gap-2 px-2 py-4 text-[13px] text-cream hover:text-warm border-b border-cream/30 hover:border-warm">See treatments</a>
+        <a href="#treatments" class="btn-ghost inline-flex items-center gap-2 px-2 py-3 text-[13px] text-cream hover:text-warm border-b border-cream/30 hover:border-warm">See treatments</a>
       </div>
     </div>
 
     <!-- CENTER: empty (model in the video shows through) -->
-    <div class="hidden md:block md:col-span-3"></div>
+    <div class="hidden md:block md:col-span-4"></div>
 
     <!-- RIGHT: stats column -->
-    <div class="col-span-12 md:col-span-4 flex md:flex-col gap-6 md:gap-12 mt-10 md:mt-0">
+    <div class="col-span-12 md:col-span-4 flex md:flex-col gap-6 md:gap-9 mt-8 md:mt-0">
       <!-- Stat 1 -->
       <div class="hero-fade flex items-start gap-4" style="--delay:1300ms">
         <span class="grid place-items-center w-10 h-10 rounded-full bg-olive-dark/70 border border-cream/15 backdrop-blur-sm shrink-0">
           <svg class="w-4 h-4 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
         </span>
         <div>
-          <p class="font-display text-[36px] md:text-[44px] leading-none text-cream [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"><span class="counter" data-target="10" data-suffix="+" data-delay="1400">0</span></p>
+          <p class="font-display text-[32px] md:text-[38px] leading-none text-cream [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"><span class="counter" data-target="10" data-suffix="+" data-delay="1400">0</span></p>
           <p class="text-[11px] uppercase tracking-[0.22em] text-cream/80 mt-2 [text-shadow:0_1px_2px_rgba(0,0,0,0.4)]">Years with Carla</p>
         </div>
       </div>
@@ -383,7 +384,7 @@
           <svg class="w-4 h-4 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="6" r="3"/><circle cx="6" cy="16" r="3"/><circle cx="18" cy="16" r="3"/><path d="M12 9v3M9 14l3-2 3 2"/></svg>
         </span>
         <div>
-          <p class="font-display text-[36px] md:text-[44px] leading-none text-cream [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"><span class="counter" data-target="6" data-delay="1600">0</span></p>
+          <p class="font-display text-[32px] md:text-[38px] leading-none text-cream [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"><span class="counter" data-target="6" data-delay="1600">0</span></p>
           <p class="text-[11px] uppercase tracking-[0.22em] text-cream/80 mt-2 [text-shadow:0_1px_2px_rgba(0,0,0,0.4)]">Custom treatments</p>
         </div>
       </div>
@@ -394,11 +395,12 @@
           <svg class="w-4 h-4 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.5 5.5 6 .5-4.5 4 1.4 6-5.4-3.2L6.6 19l1.4-6L3.5 9l6-.5L12 3z"/></svg>
         </span>
         <div>
-          <p class="font-display text-[36px] md:text-[44px] leading-none text-cream [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"><span class="counter" data-target="5" data-decimals="1" data-delay="1800">0.0</span></p>
+          <p class="font-display text-[32px] md:text-[38px] leading-none text-cream [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"><span class="counter" data-target="5" data-decimals="1" data-delay="1800">0.0</span></p>
           <p class="text-[11px] uppercase tracking-[0.22em] text-cream/80 mt-2 [text-shadow:0_1px_2px_rgba(0,0,0,0.4)]">Google rating</p>
         </div>
       </div>
     </div>
+   </div>
   </div>
 </section>
 
