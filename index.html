@@ -75,6 +75,8 @@
     color: #F4EFE0;
     user-select: none;
     text-transform: uppercase;
+    /* Subtle drop shadow for legibility over the live video background */
+    text-shadow: 0 2px 18px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.25);
   }
   .mega-letter {
     display: inline-block;
@@ -246,8 +248,23 @@
 
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-cream focus:text-ink focus:px-4 focus:py-2 focus:rounded-full">Skip to content</a>
 
-<!-- ============== HERO (scan-reveal layered, 3-col composition) ============== -->
-<section class="relative min-h-[100dvh] bg-olive overflow-hidden">
+<!-- ============== HERO (full-bleed 16:9 video bg, content overlay) ============== -->
+<section class="relative min-h-[100dvh] overflow-hidden" style="background-color:#5A6452">
+
+  <!-- ===== Full-bleed video background ===== -->
+  <video
+    autoplay muted loop playsinline preload="metadata"
+    poster="img/hero-video-poster.jpg"
+    aria-hidden="true"
+    class="absolute inset-0 w-full h-full object-cover z-0">
+    <source src="img/hero-video.mp4" type="video/mp4">
+  </video>
+
+  <!-- ===== Soft edge vignette (darkens left+right edges for text contrast,
+       leaves the model in the center untouched) ===== -->
+  <div class="absolute inset-0 z-[1] pointer-events-none" style="background:
+    linear-gradient(90deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 78%, rgba(0,0,0,0.4) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 14%, rgba(0,0,0,0) 84%, rgba(0,0,0,0.45) 100%);"></div>
 
   <!-- ===== NAV ===== -->
   <header class="relative z-30 hero-fade" style="--delay:200ms">
@@ -317,24 +334,24 @@
     </div>
   </div>
 
-  <!-- ===== HERO COMPOSITION ===== -->
-  <div class="relative z-10 max-w-[1480px] mx-auto px-6 md:px-10 pt-32 md:pt-32 lg:pt-36 pb-16 md:pb-24 grid grid-cols-12 gap-x-6 md:gap-x-8 lg:gap-x-12 items-center min-h-[calc(100dvh-100px)]">
+  <!-- ===== Content overlay (sits on top of the video bg) ===== -->
+  <div class="relative z-10 max-w-[1480px] mx-auto px-6 md:px-10 pt-36 md:pt-40 lg:pt-44 pb-32 md:pb-32 grid grid-cols-12 gap-x-6 md:gap-x-8 lg:gap-x-12 items-center min-h-[calc(100dvh-160px)]">
 
     <!-- LEFT: H1 + body + CTA -->
-    <div class="col-span-12 md:col-span-4 flex flex-col">
-      <h1 class="mega-type text-[14vw] sm:text-[12vw] md:text-[7vw] lg:text-[6.6vw]" aria-label="Skin Worth Showing">
+    <div class="col-span-12 md:col-span-5 flex flex-col">
+      <h1 class="mega-type text-[12vw] sm:text-[10vw] md:text-[5.2vw] lg:text-[4.7vw]" aria-label="Skin Worth Showing">
         <span class="block">Skin</span>
         <span class="block font-serif italic font-light text-warm">Worth</span>
         <span class="block">Showing</span>
       </h1>
 
-      <div class="hero-fade mt-8 md:mt-10" style="--delay:1500ms">
-        <p class="text-[15px] md:text-[16px] text-cream/85 leading-relaxed max-w-[34ch]">
+      <div class="hero-fade mt-7 md:mt-9" style="--delay:1500ms">
+        <p class="text-[15px] md:text-[16px] text-cream/90 leading-relaxed max-w-[34ch] [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]">
           Where modern skincare meets the art of slow care. Ten years of trained hands on Esplanade — natural-first, medical-grade when it matters.
         </p>
       </div>
 
-      <div class="hero-fade mt-8 flex flex-wrap items-center gap-4" style="--delay:1700ms">
+      <div class="hero-fade mt-7 flex flex-wrap items-center gap-4" style="--delay:1700ms">
         <a href="https://book.gettimely.com/" target="_blank" rel="noopener"
            class="btn-primary inline-flex items-center gap-2 bg-cream text-ink px-7 py-4 rounded-full text-[14px] hover:bg-warm">
           Book a facial
@@ -344,51 +361,41 @@
       </div>
     </div>
 
-    <!-- CENTER: hero video (scan boxes are baked into the clip) -->
-    <div class="col-span-12 md:col-span-5 hero-fade my-8 md:my-0" style="--delay:300ms">
-      <div class="relative aspect-[4/5] w-full overflow-hidden rounded-[3px] bg-olive-deep">
-        <video
-          autoplay muted loop playsinline preload="metadata"
-          poster="img/hero-video-poster.jpg"
-          aria-label="A Noomi Skin Care client receiving a custom skin read — hydration, brightening, and texture areas are highlighted"
-          class="absolute inset-0 w-full h-full object-cover">
-          <source src="img/hero-video.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
+    <!-- CENTER: empty (model in the video shows through) -->
+    <div class="hidden md:block md:col-span-3"></div>
 
     <!-- RIGHT: stats column -->
-    <div class="col-span-12 md:col-span-3 flex md:flex-col gap-6 md:gap-12 mt-8 md:mt-0">
+    <div class="col-span-12 md:col-span-4 flex md:flex-col gap-6 md:gap-12 mt-10 md:mt-0">
       <!-- Stat 1 -->
       <div class="hero-fade flex items-start gap-4" style="--delay:1300ms">
-        <span class="grid place-items-center w-10 h-10 rounded-full bg-olive-deep border border-cream/15 shrink-0">
+        <span class="grid place-items-center w-10 h-10 rounded-full bg-olive-dark/70 border border-cream/15 backdrop-blur-sm shrink-0">
           <svg class="w-4 h-4 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
         </span>
         <div>
-          <p class="font-display text-[36px] md:text-[44px] leading-none text-cream"><span class="counter" data-target="10" data-suffix="+" data-delay="1400">0</span></p>
-          <p class="text-[11px] uppercase tracking-[0.22em] text-cream/65 mt-2">Years with Carla</p>
+          <p class="font-display text-[36px] md:text-[44px] leading-none text-cream [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"><span class="counter" data-target="10" data-suffix="+" data-delay="1400">0</span></p>
+          <p class="text-[11px] uppercase tracking-[0.22em] text-cream/80 mt-2 [text-shadow:0_1px_2px_rgba(0,0,0,0.4)]">Years with Carla</p>
         </div>
       </div>
 
       <!-- Stat 2 -->
       <div class="hero-fade flex items-start gap-4" style="--delay:1500ms">
-        <span class="grid place-items-center w-10 h-10 rounded-full bg-olive-deep border border-cream/15 shrink-0">
+        <span class="grid place-items-center w-10 h-10 rounded-full bg-olive-dark/70 border border-cream/15 backdrop-blur-sm shrink-0">
           <svg class="w-4 h-4 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="6" r="3"/><circle cx="6" cy="16" r="3"/><circle cx="18" cy="16" r="3"/><path d="M12 9v3M9 14l3-2 3 2"/></svg>
         </span>
         <div>
-          <p class="font-display text-[36px] md:text-[44px] leading-none text-cream"><span class="counter" data-target="6" data-delay="1600">0</span></p>
-          <p class="text-[11px] uppercase tracking-[0.22em] text-cream/65 mt-2">Custom treatments</p>
+          <p class="font-display text-[36px] md:text-[44px] leading-none text-cream [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"><span class="counter" data-target="6" data-delay="1600">0</span></p>
+          <p class="text-[11px] uppercase tracking-[0.22em] text-cream/80 mt-2 [text-shadow:0_1px_2px_rgba(0,0,0,0.4)]">Custom treatments</p>
         </div>
       </div>
 
       <!-- Stat 3 -->
       <div class="hero-fade flex items-start gap-4" style="--delay:1700ms">
-        <span class="grid place-items-center w-10 h-10 rounded-full bg-olive-deep border border-cream/15 shrink-0">
+        <span class="grid place-items-center w-10 h-10 rounded-full bg-olive-dark/70 border border-cream/15 backdrop-blur-sm shrink-0">
           <svg class="w-4 h-4 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.5 5.5 6 .5-4.5 4 1.4 6-5.4-3.2L6.6 19l1.4-6L3.5 9l6-.5L12 3z"/></svg>
         </span>
         <div>
-          <p class="font-display text-[36px] md:text-[44px] leading-none text-cream"><span class="counter" data-target="5" data-decimals="1" data-delay="1800">0.0</span></p>
-          <p class="text-[11px] uppercase tracking-[0.22em] text-cream/65 mt-2">Google rating</p>
+          <p class="font-display text-[36px] md:text-[44px] leading-none text-cream [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"><span class="counter" data-target="5" data-decimals="1" data-delay="1800">0.0</span></p>
+          <p class="text-[11px] uppercase tracking-[0.22em] text-cream/80 mt-2 [text-shadow:0_1px_2px_rgba(0,0,0,0.4)]">Google rating</p>
         </div>
       </div>
     </div>
